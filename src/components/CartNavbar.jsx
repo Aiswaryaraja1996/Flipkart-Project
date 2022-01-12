@@ -102,7 +102,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export const CartNavbar = () => {
+export default function CartNavbar(){
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
 
