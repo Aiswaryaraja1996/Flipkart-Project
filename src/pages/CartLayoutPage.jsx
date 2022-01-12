@@ -58,9 +58,9 @@ export const CartLayoutPage = () => {
     );
   }
   return (
-    <div style={{ background: "#F1F3F6" }}>
+    <div style={{ background: "#F1F3F6",height:"100vh" }}>
       <CartNavbar />
-      <div style={{ marginTop: "80px" }}>
+      <div style={{position:"relative",top:"80px" }}>
         <div
           style={{
             width: "1200px",
@@ -71,7 +71,7 @@ export const CartLayoutPage = () => {
           }}
         >
           My Cart
-          <div style={{ textAlign: "center", marginTop: "100px" }}>
+          <div style={{ textAlign: "center", padding:"30px 0" }}>
             <img
               style={{ width: "180px" }}
               alt="img"
@@ -89,6 +89,7 @@ export const CartLayoutPage = () => {
             </Button>
           </div>
         </div>
+        
       </div>
       <CartFooter />
     </div>
