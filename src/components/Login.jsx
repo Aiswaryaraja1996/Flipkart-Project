@@ -1,10 +1,12 @@
-import { Stack } from "@mui/material";
+import { Stack, Box, TextField, Typography, Button } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
+import { useState } from "react";
 
 const Container = styled("div")(({ theme }) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
+  right:"6%",
   transform: "translate(-50%, -50%)",
 
   p: 4,
@@ -16,16 +18,28 @@ const Container = styled("div")(({ theme }) => ({
 
   color: "#212121",
 
-  borderRadius: "2px",
-  height: "528px",
-  maxWidth: "750px",
-  minWidth: "650px",
+  borderRadius: "4px",
+
+  minWidth: "350px",
+  maxWidth: "80%",
+  minHeight: "200px",
+  maxHeight: "90vh",
 }));
 
+const loginInitialValues = {
+  username: "",
+  password: "",
+};
+
 export default function Login() {
+  const [login, setLogin] = useState(loginInitialValues);
+
+  const onValueChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
   return (
     <Container>
-      <Stack>
+      <Stack direction="row">
         <div
           style={{
             backgroundImage:
@@ -36,14 +50,104 @@ export default function Login() {
             padding: "40px 33px",
             fontSize: "15px",
             color: "white",
-            width:"40%",
-            height:"100%",
+            width: "30%",
           }}
         >
-          <span>Login</span>
+          <span style={{ fontSize: "28px", fontWeight: 500 }}>Login</span>
           <p>
-            <span>Get access to your Orders, Wishlist and Recommendations</span>
+            <span
+              style={{
+                fontSize: "18px",
+                marginTop: "16px",
+                lineHeight: "150%",
+                color: "#dbdbdb",
+              }}
+            >
+              Get access to your Orders, Wishlist and Recommendations
+            </span>
           </p>
+        </div>
+        <div>
+          <Box
+            sx={{
+              padding: "56px 35px 16px",
+              display: "flex",
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            <TextField
+              variant="standard"
+              sx={{ marginBottom: "34px" }}
+              onChange={(e) => onValueChange(e)}
+              name="username"
+              label="Enter Email/Mobile number"
+            />
+            {/* {error && (
+              <Typography className={classes.error}>
+                Please enter valid Email ID/Mobile number
+              </Typography>
+            )} */}
+            <TextField
+              variant="standard"
+              sx={{ marginBottom: "34px" }}
+              onChange={(e) => onValueChange(e)}
+              name="password"
+              label="Enter Password"
+            />
+            <Typography
+              sx={{ color: "#878787", fontSize: "12px", fontWeight: 400 }}
+            >
+              By continuing, you agree to Flipkart's Terms of Use and Privacy
+              Policy.
+            </Typography>
+            <Button
+              sx={{
+                textTransform: "none",
+                background: "#FB641B",
+                color: "#fff",
+                height: 48,
+                marginTop: "10px",
+                borderRadius: "none",
+                "&:hover": {
+                  backgroundColor: "#FB641B",
+                },
+              }}
+            >
+              Login
+            </Button>
+            <Typography
+              sx={{ color: "#878787", fontSize: 12, marginTop: "16px" }}
+              style={{ textAlign: "center" }}
+            >
+              OR
+            </Typography>
+            <Button
+              sx={{
+                textTransform: "none",
+                background: "#fff",
+                color: "#2874f0",
+                height: 48,
+                marginTop: "16px",
+                boxShadow: "0 2px 4px 0 rgb(0 0 0 / 20%)",
+              }}
+            >
+              Request OTP
+            </Button>
+            <Typography
+              sx={{
+                margin: "auto 0 5px 0",
+                textAlign: "center",
+                color: "#2874f0",
+                fontWeight: 500,
+                fontSize: "14px",
+                cursor: "pointer",
+                marginTop: "60px",
+              }}
+            >
+              New to Flipkart? Create an account
+            </Typography>
+          </Box>
         </div>
       </Stack>
     </Container>

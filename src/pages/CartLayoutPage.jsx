@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import { CartFooter } from "../components/CartFooter";
-import { CartNavbar } from "../components/CartNavbar";
+import CartNavbar from "../components/CartNavbar";
 
 export const CartLayoutPage = () => {
   const [info, setInfo] = useState(false);
@@ -74,6 +74,7 @@ export const CartLayoutPage = () => {
           <div style={{ textAlign: "center", marginTop: "100px" }}>
             <img
               style={{ width: "180px" }}
+              alt="img"
               src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
             />
             <div style={{ marginTop: "10px" }}>Your Cart is empty!</div>
