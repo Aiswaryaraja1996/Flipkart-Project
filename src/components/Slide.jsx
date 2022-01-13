@@ -90,7 +90,7 @@ const MultiSlide = ({ data, timer, title }) => {
           <a href="/" style={{ textDecoration: "none" }}>
             <Box textAlign="center" sx={{ padding: "25px 15px" }}>
               <img
-                src={temp.image}
+                src={temp.url}
                 style={{ width: "auto", height: 150 }}
                 alt={temp.id}
               />
@@ -102,14 +102,14 @@ const MultiSlide = ({ data, timer, title }) => {
                   color: "#212121",
                 }}
               >
-                {temp.title}
+               {temp.title.shortTitle}
               </Typography>
               <Typography
                 style={{ fontSize: 14, marginTop: 5, color: "green" }}
               >
-                {temp.price}
+               {temp.discount}
               </Typography>
-              {/* <Typography
+              <Typography
                 style={{
                   fontSize: 14,
                   marginTop: 5,
@@ -117,8 +117,8 @@ const MultiSlide = ({ data, timer, title }) => {
                   opacity: ".6",
                 }}
               >
-                {temp.title}
-              </Typography> */}
+               {temp.tagline}
+              </Typography>
             </Box>
           </a>
         ))}
