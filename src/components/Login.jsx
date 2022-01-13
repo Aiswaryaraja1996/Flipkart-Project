@@ -2,24 +2,23 @@ import { Stack, Box, TextField, Typography, Button } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { useState } from "react";
 
+import { handleLogin } from "../redux/Api";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 const Container = styled("div")(({ theme }) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
-  right:"6%",
+  right: "6%",
   transform: "translate(-50%, -50%)",
-
   p: 4,
-
   background: "#fff",
   margin: "0 auto",
   overflow: "auto",
   display: "flex",
-
   color: "#212121",
-
   borderRadius: "4px",
-
   minWidth: "350px",
   maxWidth: "80%",
   minHeight: "200px",
@@ -33,6 +32,10 @@ const loginInitialValues = {
 
 export default function Login() {
   const [login, setLogin] = useState(loginInitialValues);
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.isAuth);
+  const token = useSelector((state) => state.token);
+  const isError = useSelector((state) => state.isError);
 
   const onValueChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -89,6 +92,7 @@ export default function Login() {
               </Typography>
             )} */}
             <TextField
+             type= "password"
               variant="standard"
               sx={{ marginBottom: "34px" }}
               onChange={(e) => onValueChange(e)}
@@ -112,6 +116,11 @@ export default function Login() {
                 "&:hover": {
                   backgroundColor: "#FB641B",
                 },
+              }}
+             
+              onClick={() => {
+                console.log(login);
+                dispatch(handleLogin(login));
               }}
             >
               Login
