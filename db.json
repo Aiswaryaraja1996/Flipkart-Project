@@ -1,9 +1,10 @@
 {
     "products": [
-        {
-            "watches": [
+        
+   
                 {
                     "id": 1,
+                    "category": "watches",
                     "title": "TITAN",
                     "subCategory": "Wrist Watches",
                     "Brand": "TITAN",
@@ -54,6 +55,7 @@
                 {
                     "id": 2,
                     "title": "FOGG",
+                    "category": "watches",
                     "subCategory": "Wrist Watches",
                     "Brand": "FOGG",
                     "Ideal for": [
@@ -102,6 +104,7 @@
                 {
                     "id": 3,
                     "title": "FASTTRACK",
+                    "category": "watches",
                     "subCategory": "Wrist Watches",
                     "Brand": "FASTTRACK",
                     "Ideal for": [
@@ -150,6 +153,7 @@
                 {
                     "id": 4,
                     "title": "CASIO",
+                    "category": "watches",
                     "subCategory": "Wrist Watches",
                     "Brand": "CASIO",
                     "Ideal for": [
@@ -199,6 +203,7 @@
                 {
                     "id": 5,
                     "title": "FOSSIL",
+                    "category": "watches",
                     "subCategory": "Wrist Watches",
                     "Brand": "FOSSIL",
                     "Ideal for": [
@@ -248,6 +253,7 @@
                 {
                     "id": 6,
                     "title": "FOSSIL",
+                    "category": "watches",
                     "subCategory": "Wrist Watches",
                     "Brand": "FOSSIL",
                     "Ideal for": [
@@ -297,6 +303,7 @@
                 {
                     "id": 6,
                     "title": "TITAN",
+                    "category": "watches",
                     "subCategory": "Wrist Watches",
                     "Brand": "TITAN",
                     "Ideal for": [
@@ -342,8 +349,8 @@
                         }
                     ]
                 }
-            ]
-        }
+      
+        
     ],
     "cart":[
 
