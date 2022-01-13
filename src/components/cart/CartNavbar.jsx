@@ -15,10 +15,6 @@ import ArchiveIcon from "@mui/icons-material/Archive";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Modal from "@mui/material/Modal";
-import Login from "./Login";
-import { Link } from "react-router-dom";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -101,7 +97,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function NavBar() {
+export default function CartNavbar(){
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -135,7 +131,7 @@ export default function NavBar() {
               width: "100%",
             }}
           >
-            {/* Logo Item */}
+        
             <Stack direction="column">
               <img
                 width="75"
@@ -173,119 +169,35 @@ export default function NavBar() {
                 <SearchIcon sx={{ color: "blue" }} />
               </SearchIconWrapper>
             </Search>
-            <div style={{ width: "150px" }}></div>
+            <StyledMenu
+              id="demo-customized-login"
+              MenuListProps={{
+                "aria-labelledby": "demo-login-button",
+              }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose} disableRipple>
+                <EditIcon />
+                Edit
+              </MenuItem>
+              <MenuItem onClick={handleClose} disableRipple>
+                <FileCopyIcon />
+                Duplicate
+              </MenuItem>
+              <Divider sx={{ my: 0.5 }} />
+              <MenuItem onClick={handleClose} disableRipple>
+                <ArchiveIcon />
+                Archive
+              </MenuItem>
+              <MenuItem onClick={handleClose} disableRipple>
+                <MoreHorizIcon />
+                More
+              </MenuItem>
+            </StyledMenu>
 
-            <Stack direction="row" spacing={3}>
-              <div>
-                <LoginButton
-                  id="demo-login-button"
-                  aria-controls={open ? "demo-customized-login" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  variant="contained"
-                  disableElevation
-                  onClick={handleOpenModal}
-                  //   onMouseEnter={handleClick}
-                  //   onMouseLeave={handleClose}
-
-                  sx={{
-                    backgroundColor: "white",
-                    color: "blue",
-                    borderRadius: "2px",
-                    padding: "5px 40px",
-                  }}
-                >
-                  Login
-                </LoginButton>
-
-                <Modal
-                  open={openModal}
-                  onClose={handleCloseModal}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Login />
-                </Modal>
-
-                <StyledMenu
-                  id="demo-customized-login"
-                  MenuListProps={{
-                    "aria-labelledby": "demo-login-button",
-                  }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <EditIcon />
-                    Edit
-                  </MenuItem>
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <FileCopyIcon />
-                    Duplicate
-                  </MenuItem>
-                  <Divider sx={{ my: 0.5 }} />
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <ArchiveIcon />
-                    Archive
-                  </MenuItem>
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <MoreHorizIcon />
-                    More
-                  </MenuItem>
-                </StyledMenu>
-              </div>
-
-              <div>
-                <Button
-                  sx={{
-                    boxShadow: "none",
-                    "&:hover": {
-                      backgroundColor: "transparent !important",
-                      boxShadow: "none",
-                    },
-                  }}
-                  id="demo-customized-button"
-                  aria-controls={open ? "demo-customized-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  variant="contained"
-                  disableElevation
-                  onMouseOver={handleClick}
-                  endIcon={<KeyboardArrowDownIcon />}
-                >
-                  Menu
-                </Button>
-
-                <StyledMenu
-                  id="demo-customized-menu"
-                  MenuListProps={{
-                    "aria-labelledby": "demo-customized-button",
-                  }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <EditIcon />
-                    Edit
-                  </MenuItem>
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <FileCopyIcon />
-                    Duplicate
-                  </MenuItem>
-                  <Divider sx={{ my: 0.5 }} />
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <ArchiveIcon />
-                    Archive
-                  </MenuItem>
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <MoreHorizIcon />
-                    More
-                  </MenuItem>
-                </StyledMenu>
-              </div>
-
+            <div>
               <Button
                 sx={{
                   boxShadow: "none",
@@ -294,17 +206,49 @@ export default function NavBar() {
                     boxShadow: "none",
                   },
                 }}
+                id="demo-customized-button"
+                aria-controls={open ? "demo-customized-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
                 variant="contained"
-                startIcon={<ShoppingCartIcon />}
+                disableElevation
+                onMouseOver={handleClick}
+                endIcon={<KeyboardArrowDownIcon />}
               >
-                <Link style={{ textDecoration: "none" }} to='/cart'>
-                  Cart
-                </Link>
+                MyAccount
               </Button>
-            </Stack>
+
+              <StyledMenu
+                id="demo-customized-menu"
+                MenuListProps={{
+                  "aria-labelledby": "demo-customized-button",
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose} disableRipple>
+                  <EditIcon />
+                  Edit
+                </MenuItem>
+                <MenuItem onClick={handleClose} disableRipple>
+                  <FileCopyIcon />
+                  Duplicate
+                </MenuItem>
+                <Divider sx={{ my: 0.5 }} />
+                <MenuItem onClick={handleClose} disableRipple>
+                  <ArchiveIcon />
+                  Archive
+                </MenuItem>
+                <MenuItem onClick={handleClose} disableRipple>
+                  <MoreHorizIcon />
+                  More
+                </MenuItem>
+              </StyledMenu>
+            </div>
           </Stack>
         </Toolbar>
       </AppBar>
     </Box>
   );
-}
+};

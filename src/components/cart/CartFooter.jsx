@@ -94,7 +94,6 @@ export const CartFooter = () => {
         </div>
         <div
           style={{
-           
             color: "#565656",
             fontWeight: 300,
             lineHeight: "31px",
@@ -108,9 +107,8 @@ export const CartFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {" "}
-              Help Center
-            </a>{" "}
+              <span style={{ color: "blue" }}>{" "}Help Center{" "}</span>
+            </a>
             or
             <a
               href="/helpcentre?otracker=undefined_footer_navlinks"
@@ -118,7 +116,7 @@ export const CartFooter = () => {
               rel="noopener noreferrer"
             >
               {" "}
-              Contact Us
+              <span style={{ color: "blue" }}>Contact Us</span>
             </a>
           </span>
         </div>

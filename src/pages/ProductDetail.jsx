@@ -9,18 +9,20 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material/";
-import NavBar from "../components/NavBar";
-import TopBannerOtherPage from "../components/TopBannerOtherPage";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-
-import TextField from "@mui/material/TextField";
-import ReviewBanner from "../components/ReviewBanner";
-
 import StarIcon from "@mui/icons-material/Star";
-import Footer from "../components/Footer";
-import ProductBanner from "../components/ProductBanner";
+
+
+import Footer from "../components/common/Footer";
+import ProductBanner from "../components/productItem/ProductBanner";
+import NavBar from "../components/common/NavBar";
+import TopBannerOtherPage from "../components/common/TopBannerOtherPage";
+import ReviewBanner from "../components/productItem/ReviewBanner";
+
+import {useDispatch} from "react-redux";
+import { handleAddCart } from "../redux/Api";
 
 const product = {
   id: 1,
@@ -76,6 +78,8 @@ const product = {
 };
 
 const ProductDetail = () => {
+
+const dispatch = useDispatch();
   const fassured =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
 
@@ -153,6 +157,7 @@ const ProductDetail = () => {
                   }}
                   style={{ marginRight: 10 }}
                   variant="contained"
+                  onClick={()=>dispatch(handleAddCart(product.id,product.title,product.discount,product.price,1,product.url))}
                 >
                   <ShoppingCartIcon sx={{ color: "#FFF" }} />
                   Add to Cart

@@ -1,99 +1,129 @@
-import { Button } from "@mui/material";
+import { Button, Grid, Box, Typography } from "@mui/material";
 import { useState } from "react";
-import { CartFooter } from "../components/CartFooter";
-import CartNavbar from "../components/CartNavbar";
+import { useSelector, shallowEqual } from "react-redux";
+
+import { CartFooter } from "../components/cart/CartFooter";
+import CartNavbar from "../components/cart/CartNavbar";
+import EmptyCart from "../components/cart/EmptyCart";
+import CartItem from "../components/cart/CartItem";
+import TotalCard from "../components/cart/TotalCard";
 
 export const CartLayoutPage = () => {
-  const [cart,setCart] = useState({
+  const cartItems = useSelector((state) => state.product.cart);
 
-  });
-  const [info, setInfo] = useState(false);
-
-  if (info) {
-    return (
-      <div>
-        <CartNavbar />
-        <div style={{ marginTop: "100px" }}>
-          <div
-            style={{
-              width: "1300px",
-              justifyContent: "space-between",
-              border: "1px solid black",
-              display: "flex",
-              margin: "auto",
-            }}
-          >
-            <div
-              style={{
-                width: "67%",
-                border: "1px solid black",
-              }}
-            >
-              <div>
-                <div>img</div>
-                <div>
-                  <p>Try This Color Block Men Round Neck Maroon T-Shirt</p>
-                </div>
-                <button>plus</button>
-              </div>
-              <button>place order</button>
-            </div>
-            <div
-              style={{
-                width: "30%",
-                border: "1px solid black",
-              }}
-            >
-              <div>
-                <h2>price details</h2>
-                <div>
-                  <p>price</p>
-                  <p>price</p>
-
-                  <p>price</p>
-                  <p>Total</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  console.log(cartItems);
   return (
-    <div style={{ background: "#F1F3F6",height:"100vh" }}>
+    <div style={{ background: "#F1F3F6", height: "100vh" }}>
       <CartNavbar />
-      <div style={{position:"relative",top:"80px" }}>
+
+      {cartItems.length > 0 ? (
         <div
           style={{
-            width: "1200px",
-
-            margin: "auto",
-            background: "#FFFFFF",
-            padding: "30px",
+            position: "relative",
+            top: "68px",
+            maxWidth: "1260px",
+            margin: "0 auto",
           }}
         >
-          My Cart
-          <div style={{ textAlign: "center", padding:"30px 0" }}>
-            <img
-              style={{ width: "180px" }}
-              alt="img"
-              src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
-            />
-            <div style={{ marginTop: "10px" }}>Your Cart is empty!</div>
-            <div>
-              <p style={{ fontSize: "smaller" }}>Add items to it now</p>
-            </div>
-            <Button
-              style={{ width: "250px", padding: "10px" }}
-              variant="contained"
-            >
-              Shop Now
-            </Button>
-          </div>
+          <Grid container sx={{ padding: "8px", display: "flex",flexDirection: "row",justifyContent:"space-between"}}>
+            <Grid item  sx={{ paddingRight: 0,width:"68%" }}>
+              <Box
+                sx={{
+                  background: "#fff",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography
+                  style={{
+                    fontSize: "18px",
+                    lineHeight: "56px",
+                    padding: "0 24px",
+                    fontWeight: "500",
+                  }}
+                >
+                  My Cart ({cartItems?.length})
+                </Typography>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontWeight: 500,
+                    width: "42%",
+                  }}
+                >
+                  <img
+                    alt="location"
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZWxsaXBzZSBjeD0iOSIgY3k9IjE0LjQ3OCIgZmlsbD0iI0ZGRTExQiIgcng9IjkiIHJ5PSIzLjUyMiIvPjxwYXRoIGZpbGw9IiMyODc0RjAiIGQ9Ik04LjYwOSA3LjAxYy0xLjA4IDAtMS45NTctLjgyNi0xLjk1Ny0xLjg0NSAwLS40ODkuMjA2LS45NTguNTczLTEuMzA0YTIuMDIgMi4wMiAwIDAgMSAxLjM4NC0uNTRjMS4wOCAwIDEuOTU2LjgyNSAxLjk1NiAxLjg0NCAwIC40OS0uMjA2Ljk1OS0uNTczIDEuMzA1cy0uODY0LjU0LTEuMzgzLjU0ek0zLjEzIDUuMTY1YzAgMy44NzQgNS40NzkgOC45MjIgNS40NzkgOC45MjJzNS40NzgtNS4wNDggNS40NzgtOC45MjJDMTQuMDg3IDIuMzEzIDExLjYzNCAwIDguNjA5IDAgNS41ODMgMCAzLjEzIDIuMzEzIDMuMTMgNS4xNjV6Ii8+PC9nPjwvc3ZnPg=="
+                  />
+                  <span style={{ color: "#878787",marginRight:"8px",fontSize:"14px" }}> Deliver to</span>
+
+                  <div
+                    style={{
+                      padding: "12px",
+                      border: "1px solid #e0e0e0",
+                      borderRadius: "2px",
+                      fontWeight: 500,
+                      cursor: "pointer",
+
+                      display: "flex",
+                      width: "60%",
+
+                      alignItems: "center",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <div style={{ width: "90%", color: "black" }}>
+                      <span>Palakkad - 678011</span>
+                    </div>
+                    <img
+                      style={{ marginLeft: "20px" }}
+                      width="9px"
+                      height="5px"
+                      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5IiBoZWlnaHQ9IjUiPjxwYXRoIGZpbGw9IiMyMTIxMjEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTS4yMjcuNzAzQy0uMTY4LjMxNS0uMDMyIDAgLjUxNCAwaDcuOTY1Yy41NTYgMCAuNjg1LjMxNy4yOTguNjk4TDcuNjQgMS44MThsLTIuNDI3IDIuMzlhMS4wMiAxLjAyIDAgMCAxLTEuNDI3LS4wMDNMLjIyNy43MDN6Ii8+PC9zdmc+"
+                      alt="icon"
+                    />
+                  </div>
+                </div>
+              </Box>
+              {cartItems.map((item) => (
+                <CartItem item={item} />
+              ))}
+              <Box
+                sx={{
+                  padding: "16px 22px",
+                  background: "#fff",
+                  boxShadow: "0 -2px 10px 0 rgb(0 0 0 / 10%)",
+                  borderTop: "1px solid #f0f0f0",
+                }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    display: "flex",
+                    marginLeft: "auto",
+                    background: "#fb641b",
+                    color: "#fff",
+                    borderRadius: 2,
+                    width: 250,
+                    height: 51,
+                  }}
+                >
+                  Place Order
+                </Button>
+              </Box>
+            </Grid>
+            <Grid item sx={{width:"30%"}}>
+                    <TotalCard cartItems={cartItems} />
+                </Grid>
+          </Grid>
         </div>
-        
-      </div>
+      ) : (
+        <EmptyCart />
+      )}
+
       <CartFooter />
     </div>
   );

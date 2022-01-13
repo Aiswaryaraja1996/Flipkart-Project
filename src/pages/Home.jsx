@@ -1,12 +1,12 @@
-import NavBar from "../components/NavBar";
-import TopBanner from "../components/TopBanner";
-import Carousel from "../components/Carousel";
-import FooterMidContent from "../components/FooterMidContent";
+import NavBar from "../components/common/NavBar";
+import TopBanner from "../components/home/TopBanner";
+import Carousel from "../components/home/Carousel";
+import FooterMidContent from "../components/common/FooterMidContent";
+import Slide from "../components/home/Slide";
+import MiddleSlide from "../components/home/MiddleSlide";
+import Footer from "../components/common/Footer";
 
 import Box from "@mui/material/Box";
-import Slide from "../components/Slide";
-import MiddleSlide from "../components/MiddleSlide";
-import Footer from "../components/Footer";
 import { dealData, furnitureData } from "../utils/Navdata";
 
 const Home = () => {
