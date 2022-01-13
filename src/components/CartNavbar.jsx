@@ -20,7 +20,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Modal from "@mui/material/Modal";
 import Login from "./Login";
 import { Link } from "react-router-dom";
-import { Routes } from "../routes/index";
+// import Allroutes from "./routes/Allroutes";
 
 const Search = styled("div")(({ theme }) => ({
   borderRadius: "2px",
