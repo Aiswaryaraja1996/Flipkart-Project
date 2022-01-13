@@ -4,6 +4,9 @@ import { CartFooter } from "../components/CartFooter";
 import CartNavbar from "../components/CartNavbar";
 
 export const CartLayoutPage = () => {
+  const [cart,setCart] = useState({
+
+  });
   const [info, setInfo] = useState(false);
 
   if (info) {
