@@ -1,7 +1,7 @@
-import { Box, Typography,Paper } from "@mui/material";
-import { navData } from "../utils/Navdata";
+import { Box, Typography } from "@mui/material";
+import { navData } from "../../utils/Navdata";
 
-const TopBanner = () => {
+const TopBannerOtherPage = () => {
   return (
   
       <div style={{boxShadow: "0 1px 1px 0 rgb(0 0 0 / 16%)",zIndex:6,backgroundColor:"white"}}
@@ -17,9 +17,8 @@ const TopBanner = () => {
 
       {navData.map((temp) => (
           <Box sx={{ padding: "12px 8px", textAlign: "center" }}>
-            <img src={temp.url} style={{ width: 64 }} alt={temp.title} />
             <Typography
-              sx={{ fontSize: 14, fontWeight: 600, fontFamily: "inherit" }}
+              sx={{ fontSize: 14, fontWeight: 500, fontFamily: "inherit" }}
             >
               {temp.text}
             </Typography>
@@ -32,4 +31,4 @@ const TopBanner = () => {
   );
 };
 
-export default TopBanner;
+export default TopBannerOtherPage;

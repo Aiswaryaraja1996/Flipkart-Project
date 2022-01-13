@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -20,7 +19,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Modal from "@mui/material/Modal";
 import Login from "./Login";
 import { Link } from "react-router-dom";
-// import Allroutes from "./routes/Allroutes";
 
 const Search = styled("div")(({ theme }) => ({
   borderRadius: "2px",
@@ -102,7 +100,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function CartNavbar(){
+export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
 
@@ -174,35 +172,93 @@ export default function CartNavbar(){
                 <SearchIcon sx={{ color: "blue" }} />
               </SearchIconWrapper>
             </Search>
-            <StyledMenu
-              id="demo-customized-login"
-              MenuListProps={{
-                "aria-labelledby": "demo-login-button",
-              }}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose} disableRipple>
-                <EditIcon />
-                Edit
-              </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple>
-                <FileCopyIcon />
-                Duplicate
-              </MenuItem>
-              <Divider sx={{ my: 0.5 }} />
-              <MenuItem onClick={handleClose} disableRipple>
-                <ArchiveIcon />
-                Archive
-              </MenuItem>
-              <MenuItem onClick={handleClose} disableRipple>
-                <MoreHorizIcon />
-                More
-              </MenuItem>
-            </StyledMenu>
+            <div style={{ width: "150px" }}></div>
 
-            <div>
+            <Stack direction="row" spacing={3}>
+              <div>
+                <Link to="/cart">
+                  <LoginButton
+                    id="demo-login-button"
+                    aria-controls={open ? "demo-customized-login" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    variant="contained"
+                    disableElevation
+                    // onClick={handleOpenModal}
+                    //   onMouseEnter={handleClick}
+                    //   onMouseLeave={handleClose}
+
+                    sx={{
+                      backgroundColor: "white",
+                      color: "blue",
+                      borderRadius: "2px",
+                      padding: "5px 40px",
+                    }}
+                  >
+                    Login
+                  </LoginButton>
+                </Link>
+
+                <Modal
+                  open={openModal}
+                  onClose={handleCloseModal}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Login />
+                </Modal>
+              </div>
+
+              <div>
+                <Button
+                  sx={{
+                    boxShadow: "none",
+                    "&:hover": {
+                      backgroundColor: "transparent !important",
+                      boxShadow: "none",
+                    },
+                  }}
+                  id="demo-customized-button"
+                  aria-controls={open ? "demo-customized-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  variant="contained"
+                  disableElevation
+                  onMouseOver={handleClick}
+                  endIcon={<KeyboardArrowDownIcon />}
+                >
+                  Menu
+                </Button>
+
+                {/* <StyledMenu
+                  id="demo-customized-menu"
+                  MenuListProps={{
+                    "aria-labelledby": "demo-customized-button",
+                  }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose} disableRipple>
+                    <EditIcon />
+                    Edit
+                  </MenuItem>
+                  <MenuItem onClick={handleClose} disableRipple>
+                    <FileCopyIcon />
+                    Duplicate
+                  </MenuItem>
+                  <Divider sx={{ my: 0.5 }} />
+                  <MenuItem onClick={handleClose} disableRipple>
+                    <ArchiveIcon />
+                    Archive
+                  </MenuItem>
+                  <MenuItem onClick={handleClose} disableRipple>
+                    <MoreHorizIcon />
+                    More
+                  </MenuItem>
+                </StyledMenu> */}
+              </div>
+
               <Button
                 sx={{
                   boxShadow: "none",
@@ -211,49 +267,17 @@ export default function CartNavbar(){
                     boxShadow: "none",
                   },
                 }}
-                id="demo-customized-button"
-                aria-controls={open ? "demo-customized-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
                 variant="contained"
-                disableElevation
-                onMouseOver={handleClick}
-                endIcon={<KeyboardArrowDownIcon />}
+                startIcon={<ShoppingCartIcon />}
               >
-                MyAccount
+                <Link style={{ textDecoration: "none" }} to="/productDetail">
+                  Cart
+                </Link>
               </Button>
-
-              <StyledMenu
-                id="demo-customized-menu"
-                MenuListProps={{
-                  "aria-labelledby": "demo-customized-button",
-                }}
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose} disableRipple>
-                  <EditIcon />
-                  Edit
-                </MenuItem>
-                <MenuItem onClick={handleClose} disableRipple>
-                  <FileCopyIcon />
-                  Duplicate
-                </MenuItem>
-                <Divider sx={{ my: 0.5 }} />
-                <MenuItem onClick={handleClose} disableRipple>
-                  <ArchiveIcon />
-                  Archive
-                </MenuItem>
-                <MenuItem onClick={handleClose} disableRipple>
-                  <MoreHorizIcon />
-                  More
-                </MenuItem>
-              </StyledMenu>
-            </div>
+            </Stack>
           </Stack>
         </Toolbar>
       </AppBar>
     </Box>
   );
-};
+}
