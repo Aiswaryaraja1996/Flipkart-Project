@@ -17,7 +17,6 @@ const MiddleSlide = ({ products }) => {
       </Box>
       <Box
         sx={{
-         
           background: "#FFFFFF",
           width: "17%",
           marginLeft: "10px",

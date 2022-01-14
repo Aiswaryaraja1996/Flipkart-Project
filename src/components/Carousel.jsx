@@ -18,7 +18,6 @@ const Banner = () => {
           borderRadius: 0,
           margin: 0,
           width: 50,
-          
         },
       }}
     >
