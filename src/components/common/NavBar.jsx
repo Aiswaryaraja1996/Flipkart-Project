@@ -270,7 +270,7 @@ export default function NavBar() {
                 variant="contained"
                 startIcon={<ShoppingCartIcon />}
               >
-                <Link style={{ textDecoration: "none" }} to="/productDetail">
+                <Link style={{ textDecoration: "none" }} to="/products">
                   Cart
                 </Link>
               </Button>

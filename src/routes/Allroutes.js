@@ -1,13 +1,8 @@
-// export const Routes = {
-//   home: "/",
-//   cartlayout: "/cartlayout",
-//   productDetail: "/productDetail"
-// };
-
 import { Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import {CartLayoutPage} from "../pages/CartLayoutPage";
 import ProductDetail from "../pages/ProductDetail";
+import Products from "../pages/Products";
 
 export default function Allroutes() {
   return (
@@ -20,6 +15,9 @@ export default function Allroutes() {
       </Route>
       <Route exact path="/productDetail">
         <ProductDetail />
+      </Route>
+      <Route exact path="/products">
+        <Products />
       </Route>
     </Switch>
   );
