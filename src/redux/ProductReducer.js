@@ -1,11 +1,12 @@
 import { actionConstants } from "./Action";
 import { loadData, saveData } from "../utils/localStorage";
 
-const products = loadData("products") || null;
+const products = loadData("products") || [];
+const cart = loadData("cart") || [];
 
 const initialState = {
   products: products,
-  cart: [],
+  cart: cart,
   product: {},
   isLoading: true,
   isError: false,
@@ -27,19 +28,22 @@ export default function ProductReducer(state = initialState, action) {
       };
     case actionConstants.GET_PRODUCTS_FAILURE:
       return { ...state, isError: true };
+    case actionConstants.EMPTY_CART:
+      return { ...state, cart: [] };
     case actionConstants.ADD_CART:
-      if (state.cart.some((item) => item.id === action.payload.id)) {
-        return {
-          ...state,
-          cart: state.cart.map((i) =>
-            i.id === action.payload.id
-              ? { ...i, qty: i.qty + action.payload.qty }
-              : i
-          ),
-        };
-      } else {
-        return { ...state, cart: [...state.cart, action.payload] };
-      }
+      saveData("cart", [...state.cart, action.payload]);
+      // if (state.cart.some((item) => item.id === action.payload.id)) {
+      //   return {
+      //     ...state,
+      //     cart: state.cart.map((i) =>
+      //       i.id === action.payload.id
+      //         ? { ...i, qty: i.qty + action.payload.qty }
+      //         : i
+      //     ),
+      //   };
+      // } else {
+      return { ...state, cart: [...state.cart, action.payload] };
+    // }
     case actionConstants.REMOVE_CART:
       const existingCartItem = state.cart.find(
         (item) => item.id === action.payload.id

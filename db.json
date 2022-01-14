@@ -793,12 +793,58 @@
   ],
   "cart": [],
   "wishlist": [],
-  "userData": [],
   "registeredUsers": [
     {
-      "id": "070c0097-46f3-48c5-9e0b-894bdd1a5825",
+      "id": "38dc4c1b-9af2-47e9-aab5-005641319ebe",
       "mobile": "9562152083",
-      "password": "1234"
+      "password": "1234",
+      "cart": [
+        {
+          "id": 1,
+          "title": "TITAN",
+          "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
+          "discount": 50,
+          "price": 1999,
+          "mrp": 999,
+          "delCharge": "Free",
+          "delDate": "Tue Feb 1",
+          "qty": 1,
+          "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
+        }
+      ],
+      "wishList": []
+    },
+    {
+      "id": "d8d5f6f8-2d5d-4d4a-9db6-8329d00b82b0",
+      "mobile": "9048934825",
+      "password": "1234",
+      "cart": [
+        {
+          "id": 2,
+          "title": "FOSSIL",
+          "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
+          "discount": 31,
+          "price": 1699,
+          "mrp": 526,
+          "delCharge": "Free",
+          "delDate": "Tue Feb 1",
+          "qty": 1,
+          "token": "d8d5f6f8-2d5d-4d4a-9db6-8329d00b82b0"
+        },
+        {
+          "id": 3,
+          "title": "FASTTRACK",
+          "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/j/v/j/c-38044pp03-fastrack-original-imafgyqxzstfyeqg.jpeg?q=50",
+          "discount": 24,
+          "price": 1599,
+          "mrp": 383,
+          "delCharge": "Free",
+          "delDate": "Tue Feb 1",
+          "qty": 1,
+          "token": "d8d5f6f8-2d5d-4d4a-9db6-8329d00b82b0"
+        }
+      ],
+      "wishList": []
     }
   ]
 }
