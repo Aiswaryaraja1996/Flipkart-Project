@@ -1,27 +1,72 @@
 import axios from "axios";
 import * as actions from "./Action";
+import { v4 as uuidv4 } from 'uuid';
 
-export const handleLogin = (loginDetails) => (dispatch) => {
+export const handleRegister = (login) => (dispatch) => {
   const payLoad = {
-    username: loginDetails.username,
-    password: loginDetails.password,
+    id:uuidv4(),
+    mobile: login.mobile,
+    password: login.password,
   };
   const config = {
-    url: "https://fakestoreapi.com/auth/login",
+    url: "http://localhost:3001/registeredUsers/",
     method: "POST",
     data: payLoad,
   };
   return axios(config)
     .then((res) => {
       console.log(res);
-      const loginAction = actions.loginUser(res.data.token);
-      dispatch(loginAction);
+      // const loginAction = actions.loginUser(res.data.token);
+      // dispatch(loginAction);
     })
     .catch((err) => {
-      const failureAction = actions.loginFailure();
-      dispatch(failureAction);
+      // const failureAction = actions.loginFailure();
+      // dispatch(failureAction);
     });
 };
+
+export const getProducts =
+  (query = "watches") =>
+  (dispatch) => {
+    const requestAction = actions.getProductsRequest();
+    dispatch(requestAction);
+
+    const config = {
+      url: `http://localhost:3001/products?category=${query}`,
+      method: "GET",
+    };
+    return axios(config)
+      .then((res) => {
+        const productAction = actions.getProductsSuccess(res.data);
+        dispatch(productAction);
+      })
+      .catch((err) => {
+        const failureAction = actions.getProductsFailure();
+        dispatch(failureAction);
+      });
+  };
+
+  export const getSingleProduct =
+  (id) =>
+  (dispatch) => {
+    const requestAction = actions.getProductsRequest();
+    dispatch(requestAction);
+console.log(id);
+    const config = {
+      url: `http://localhost:3001/products/${id}`,
+      method: "GET",
+    };
+    return axios(config)
+      .then((res) => {
+        
+        const productAction = actions.getSingle(res.data);
+        dispatch(productAction);
+      })
+      .catch((err) => {
+        const failureAction = actions.getProductsFailure();
+        dispatch(failureAction);
+      });
+  };
 
 export const handleAddCart =
   (id, title, discount, price, qty, url) => (dispatch) => {
@@ -40,7 +85,7 @@ export const handleAddCart =
     };
 
     const config = {
-      url: "http://localhost:3000/cart/",
+      url: "http://localhost:3001/cart/",
       method: "POST",
       data: payLoad,
     };
