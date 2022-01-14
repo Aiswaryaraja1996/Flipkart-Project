@@ -1,9 +1,7 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
-import { Stack } from "@mui/material";
+
+import { Stack, Badge, Box, Toolbar, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -19,6 +17,60 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Modal from "@mui/material/Modal";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import BadgeUnstyled from "@mui/base/BadgeUnstyled";
+
+const StyledBadge = styled(BadgeUnstyled)`
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 10px;
+  font-variant: tabular-nums;
+  list-style: none;
+
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+
+  & .MuiBadge-badge {
+    z-index: auto;
+    min-width: 12px;
+    height: 16px;
+    padding: 0 3px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-align: center;
+    background: #ff4d4f;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px #fff;
+  }
+
+  & .MuiBadge-dot {
+    padding: 0;
+    z-index: auto;
+    min-width: 6px;
+    width: 6px;
+    height: 6px;
+    background: #ff4d4f;
+    border-radius: 100%;
+    box-shadow: 0 0 0 1px #fff;
+  }
+
+  & .MuiBadge-anchorOriginTopRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0;
+  }
+`;
 
 const Search = styled("div")(({ theme }) => ({
   borderRadius: "2px",
@@ -101,8 +153,12 @@ const StyledMenu = styled((props) => (
 }));
 
 export default function NavBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [openModal, setOpenModal] = React.useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+
+  const [query, setQuery] = useState(null);
+
+  const cart = useSelector((state) => state.product.cart);
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
@@ -167,37 +223,36 @@ export default function NavBar() {
               <StyledInputBase
                 placeholder="Search for products, brands and more"
                 inputProps={{ "aria-label": "search" }}
+                onChange={(e) => setQuery(e.target.value)}
               />
+
               <SearchIconWrapper>
-                <SearchIcon sx={{ color: "blue" }} />
+                <Link to={`/products/${query}`}>
+                  <SearchIcon sx={{ color: "blue" }} />
+                </Link>
               </SearchIconWrapper>
             </Search>
             <div style={{ width: "150px" }}></div>
 
             <Stack direction="row" spacing={3}>
               <div>
-                <Link to="/cart">
-                  <LoginButton
-                    id="demo-login-button"
-                    aria-controls={open ? "demo-customized-login" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    variant="contained"
-                    disableElevation
-                    // onClick={handleOpenModal}
-                    //   onMouseEnter={handleClick}
-                    //   onMouseLeave={handleClose}
-
-                    sx={{
-                      backgroundColor: "white",
-                      color: "blue",
-                      borderRadius: "2px",
-                      padding: "5px 40px",
-                    }}
-                  >
-                    Login
-                  </LoginButton>
-                </Link>
+                <LoginButton
+                  id="demo-login-button"
+                  aria-controls={open ? "demo-customized-login" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  variant="contained"
+                  disableElevation
+                  onClick={handleOpenModal}
+                  sx={{
+                    backgroundColor: "white",
+                    color: "blue",
+                    borderRadius: "2px",
+                    padding: "5px 40px",
+                  }}
+                >
+                  Login
+                </LoginButton>
 
                 <Modal
                   open={openModal}
@@ -268,9 +323,17 @@ export default function NavBar() {
                   },
                 }}
                 variant="contained"
-                startIcon={<ShoppingCartIcon />}
+                startIcon={
+                  cart.length === 0 ? (
+                    <ShoppingCartIcon sx={{ color: "white" }} />
+                  ) : (
+                    <StyledBadge badgeContent={cart.length}>
+                      <ShoppingCartIcon sx={{ color: "white" }} />
+                    </StyledBadge>
+                  )
+                }
               >
-                <Link style={{ textDecoration: "none" }} to="/products">
+                <Link style={{ textDecoration: "none" }} to="/cart">
                   Cart
                 </Link>
               </Button>

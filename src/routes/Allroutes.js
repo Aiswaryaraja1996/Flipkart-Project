@@ -13,10 +13,10 @@ export default function Allroutes() {
       <Route exact path="/cart">
         <CartLayoutPage />
       </Route>
-      <Route exact path="/productDetail">
+      <Route exact path="/productDetail/:id">
         <ProductDetail />
       </Route>
-      <Route exact path="/products">
+      <Route exact path="/products/:query">
         <Products />
       </Route>
     </Switch>

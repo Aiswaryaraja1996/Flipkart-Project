@@ -4,62 +4,22 @@ import Filter from "../components/products/Filter";
 import Grid from "@mui/material/Grid";
 
 import ProductCard from "../components/products/ProductCard";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../redux/Api";
 
-const product = {
-  id: 1,
-  category: "watches",
-  title: "TITAN",
-  subCategory: "Wrist Watches",
-  Brand: "TITAN",
-  "Ideal for": ["Women", "Girls"],
-  shortTitle:
-    "New Arrival Stylish Attractive Ethnic Blue Bracelet Look Analog Watch for Girls Analog Watch - For Women",
-  url: "https://rukminim1.flixcart.com/image/880/1056/jubjte80/watch/z/n/w/new-arrival-stylish-attractive-ethnic-blue-bracelet-look-analog-original-imaffg3vhgq6zsej.jpeg?q=50",
-  altUrl:
-    "https://rukminim1.flixcart.com/image/880/1056/jubjte80/watch/z/n/w/new-arrival-stylish-attractive-ethnic-blue-bracelet-look-analog-original-imafegehynzag7k9.jpeg?q=50",
-  discount: 75,
-  price: 1999,
-  tagLine: "Deal of the day",
-  avgRate: 4,
-  customerRatings: [
-    {
-      ratings: "4.1",
-      review:
-        "Very nice product it is fabulous I really love it thank you flipcart",
-      location: "Kerala",
-      like: 100,
-      dislike: 10,
-    },
-    {
-      ratings: "4.1",
-      review:
-        "Very nice product it is fabulous I really love it thank you flipcart",
-      location: "Kerala",
-      like: 100,
-      dislike: 10,
-    },
-    {
-      ratings: "4.1",
-      review:
-        "Very nice product it is fabulous I really love it thank you flipcart",
-      location: "Kerala",
-      like: 100,
-      dislike: 10,
-    },
-  ],
-  qa: [
-    {
-      q: "Is it Water Proof ?",
-      a: "Yes",
-      name: "Anonymous",
-      like: 100,
-      dislike: 10,
-    },
-  ],
-};
 
 export default function Products() {
+  const { query } = useParams();
+  const dispatch = useDispatch();
+
+  const product = useSelector((state) => state.product.products);
+
+  console.log(product);
+  useEffect(() => dispatch(getProducts(query)), []);
   return (
+    
     <div style={{ backgroundColor: "#f1f3f6" }}>
       <NavBar />
       <TopBannerOtherPage />
@@ -121,8 +81,8 @@ export default function Products() {
                     spacing={1}
                     justifyContent="space-between"
                   >
-                    {[1, 2, 3, 4, 5, 6, 7].map(() => (
-                      <ProductCard item={product} />
+                    {product?.map((item) => (
+                      <ProductCard item={item} />
                     ))}
                   </Grid>
                 </div>

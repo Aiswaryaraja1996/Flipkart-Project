@@ -8,8 +8,13 @@ import Footer from "../components/common/Footer";
 
 import Box from "@mui/material/Box";
 import { dealData, furnitureData } from "../utils/Navdata";
+import { useState } from "react";
+
 
 const Home = () => {
+
+  const [query,setQuery] = useState(null);
+  
   return (
     <div style={{ background: "#f1f3f6" }}>
       <NavBar />
