@@ -95,6 +95,7 @@ export default function ProductCard({ item }) {
                 overflow: "hidden",
                 padding: 0,
                 fontSize: "14px",
+                color:"black"
               }}
             >
               {item.shortTitle}

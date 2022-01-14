@@ -1,27 +1,28 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import { Stack, Badge, Box, Toolbar, Button } from "@mui/material";
+import { Stack, Box, Toolbar, Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Modal from "@mui/material/Modal";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+import { handleLogout } from "../../redux/Api";
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import BadgeUnstyled from "@mui/base/BadgeUnstyled";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import LogoutIcon from "@mui/icons-material/Logout";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
@@ -127,10 +128,7 @@ const StyledMenu = styled((props) => (
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,
-    color:
-      theme.palette.mode === "light"
-        ? "rgb(55, 65, 81)"
-        : theme.palette.grey[300],
+
     boxShadow:
       "rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
     "& .MuiMenu-list": {
@@ -138,8 +136,8 @@ const StyledMenu = styled((props) => (
     },
     "& .MuiMenuItem-root": {
       "& .MuiSvgIcon-root": {
-        fontSize: 18,
-        color: theme.palette.text.secondary,
+        fontSize: 16,
+        color: theme.palette.primary,
         marginRight: theme.spacing(1.5),
       },
       "&:active": {
@@ -156,9 +154,12 @@ export default function NavBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
+  const dispatch = useDispatch();
+
   const [query, setQuery] = useState(null);
 
   const cart = useSelector((state) => state.product.cart);
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
@@ -171,6 +172,12 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  React.useEffect(() => {
+    if (isAuth) {
+      handleCloseModal();
+    }
+  }, [isAuth,cart]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -236,23 +243,46 @@ export default function NavBar() {
 
             <Stack direction="row" spacing={3}>
               <div>
-                <LoginButton
-                  id="demo-login-button"
-                  aria-controls={open ? "demo-customized-login" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  variant="contained"
-                  disableElevation
-                  onClick={handleOpenModal}
-                  sx={{
-                    backgroundColor: "white",
-                    color: "blue",
-                    borderRadius: "2px",
-                    padding: "5px 40px",
-                  }}
-                >
-                  Login
-                </LoginButton>
+                {isAuth ? (
+                  <Button
+                    sx={{
+                      width: "100%",
+                      boxShadow: "none",
+                      "&:hover": {
+                        backgroundColor: "transparent !important",
+                        boxShadow: "none",
+                      },
+                    }}
+                    id="demo-customized-button"
+                    aria-controls={open ? "demo-customized-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    variant="contained"
+                    disableElevation
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                  >
+                    Account
+                  </Button>
+                ) : (
+                  <LoginButton
+                    id="demo-login-button"
+                    aria-controls={open ? "demo-customized-login" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    variant="contained"
+                    disableElevation
+                    onClick={handleOpenModal}
+                    sx={{
+                      backgroundColor: "white",
+                      color: "blue",
+                      borderRadius: "2px",
+                      padding: "5px 40px",
+                    }}
+                  >
+                    Login
+                  </LoginButton>
+                )}
 
                 <Modal
                   open={openModal}
@@ -279,39 +309,41 @@ export default function NavBar() {
                   aria-expanded={open ? "true" : undefined}
                   variant="contained"
                   disableElevation
-                  onMouseOver={handleClick}
                   endIcon={<KeyboardArrowDownIcon />}
                 >
                   Menu
                 </Button>
 
-                {/* <StyledMenu
+                <StyledMenu
                   id="demo-customized-menu"
                   MenuListProps={{
                     "aria-labelledby": "demo-customized-button",
                   }}
                   anchorEl={anchorEl}
                   open={open}
-                  onClose={handleClose}
+                  onClick={handleClose}
                 >
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <EditIcon />
-                    Edit
+                  <MenuItem disableRipple>
+                    <AccountCircleIcon color="primary" />
+                    My Profile
                   </MenuItem>
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <FileCopyIcon />
-                    Duplicate
+                  <MenuItem disableRipple>
+                    <PaymentsIcon color="primary" />
+                    Orders
                   </MenuItem>
                   <Divider sx={{ my: 0.5 }} />
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <ArchiveIcon />
-                    Archive
+                  <MenuItem disableRipple>
+                    <FavoriteIcon color="primary" />
+                    Wishlist
                   </MenuItem>
-                  <MenuItem onClick={handleClose} disableRipple>
-                    <MoreHorizIcon />
-                    More
+                  <MenuItem
+                    onClick={() => dispatch(handleLogout())}
+                    disableRipple
+                  >
+                    <LogoutIcon color="primary" />
+                    Logout
                   </MenuItem>
-                </StyledMenu> */}
+                </StyledMenu>
               </div>
 
               <Button

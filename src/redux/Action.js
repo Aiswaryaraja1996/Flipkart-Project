@@ -7,12 +7,23 @@ export const actionConstants = {
   GET_PRODUCTS_FAILURE: "GET_PRODUCTS_FAILURE",
   GET_SINGLE_PRODUCT: "GET_SINGLE_PRODUCT",
   REGISTER_REQUEST: "REGISTER_REQUEST",
+  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+  LOGOUT: "LOGOUT",
+  EMPTY_CART: "EMPTY_CART",
 };
 
 export const registerRequest = () =>{
   return {
     type: actionConstants.REGISTER_REQUEST,
-    payload: { isRegister: false },
+    payload: { isRegister: 1 },
+  };
+}
+
+
+export const registerSuccess = () =>{
+  return {
+    type: actionConstants.REGISTER_SUCCESS,
+    payload: { isRegister: 2},
   };
 }
 
@@ -26,9 +37,23 @@ export const loginUser = (token) => {
 export const loginFailure = () => {
   return {
     type: actionConstants.LOGIN_FAILURE,
-    payload: { isError: true },
+    payload: { isError: 2 },
   };
 };
+
+export const logout = () => {
+  return {
+    type: actionConstants.LOGOUT,
+    payload: { isAuth: false },
+  };
+}
+
+export const emptyCart = () => {
+  return{
+    type : actionConstants.EMPTY_CART,
+    payload: {cart:[]}
+  }
+}
 
 export const getProductsSuccess = (products) => {
   return {
@@ -74,6 +99,7 @@ export const addCart = (data) => {
       delCharge: data.delCharge,
       delDate: data.delDate,
       qty: data.qty,
+      token:data.token
     },
   };
 };

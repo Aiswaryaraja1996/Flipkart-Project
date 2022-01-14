@@ -35,6 +35,14 @@ const ProductDetail = () => {
 
   const product = useSelector((state) => state.product.product);
 
+  const cart = useSelector((state) => state.product.cart);
+
+  var inCart = cart?.find((item) => {
+    return item.id === product.id;
+  });
+
+  console.log(inCart);
+
   const fassured =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
 
@@ -131,7 +139,8 @@ const ProductDetail = () => {
                     }
                   >
                     <ShoppingCartIcon sx={{ color: "#FFF" }} />
-                    Add to Cart
+
+                    {inCart ? "Go to Cart" : "Add to Cart"}
                   </Button>
                   <Button
                     sx={{
