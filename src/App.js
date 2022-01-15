@@ -5,6 +5,7 @@ import { Routes } from "../src/routes/index";
 import { CartLayoutPage } from "./pages/CartLayoutPage";
 import Home from "./pages/Home";
 import { Accessories } from "./components/Accessories";
+import { Whislist } from "./components/Whishlist";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Switch>
           <Route exact path={Routes.home} component={Home} />
           <Route exact path={Routes.cartlayout} component={CartLayoutPage} />
+          <Route exact path={Routes.whishlist} component={Whislist} />
+
           <Route
             exact
             path={Routes.accessorieslayout}
