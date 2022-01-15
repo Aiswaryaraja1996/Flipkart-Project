@@ -1,27 +1,13 @@
 import "./App.css";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/common/NavBar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Routes } from "../src/routes/index";
-import { CartLayoutPage } from "./pages/CartLayoutPage";
-import Home from "./pages/Home";
-import { Accessories } from "./components/Accessories";
-import { Whislist } from "./components/Whishlist";
+import Allroutes from "./routes/Allroutes";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <Switch>
-          <Route exact path={Routes.home} component={Home} />
-          <Route exact path={Routes.cartlayout} component={CartLayoutPage} />
-          <Route exact path={Routes.whishlist} component={Whislist} />
-
-          <Route
-            exact
-            path={Routes.accessorieslayout}
-            component={Accessories}
-          />
-        </Switch>
+        <Allroutes />
       </BrowserRouter>
     </div>
   );

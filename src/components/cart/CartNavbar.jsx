@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,11 +15,7 @@ import ArchiveIcon from "@mui/icons-material/Archive";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Modal from "@mui/material/Modal";
-import Login from "./Login";
-import { Link } from "react-router-dom";
-import { Routes } from "../routes/index";
+
 
 const Search = styled("div")(({ theme }) => ({
   borderRadius: "2px",
@@ -136,7 +131,7 @@ export default function CartNavbar(){
               width: "100%",
             }}
           >
-            {/* Logo Item */}
+        
             <Stack direction="column">
               <img
                 width="75"

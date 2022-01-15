@@ -1,6 +1,6 @@
 import Carousel from "react-material-ui-carousel";
 
-import { bannerData } from "../utils/Navdata";
+import { bannerData } from "../../utils/Navdata";
 
 const Banner = () => {
   return (
