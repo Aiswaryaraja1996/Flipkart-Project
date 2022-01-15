@@ -25,6 +25,22 @@ export const handleRegister = (login) => (dispatch) => {
     .catch((err) => {});
 };
 
+export const setUserCart = (payLoad) => (dispatch) => {
+  console.log(payLoad);
+  const config = {
+    url: "http://localhost:3001/cart/",
+    method: "POST",
+    data: payLoad,
+  };
+  return axios(config)
+    .then((res) => {
+      console.log(res);
+      const addCartAction = actions.addCart(res.data);
+      dispatch(addCartAction);
+    })
+    .catch((err) => alert(err.message));
+};
+
 export const handleLogin = (mobile) => (dispatch) => {
   const config = {
     url: `http://localhost:3001/registeredUsers?mobile=${mobile}`,
@@ -35,7 +51,13 @@ export const handleLogin = (mobile) => (dispatch) => {
       console.log(res.data);
       if (res.data[0].id) {
         const loginAction = actions.loginUser(res.data[0].id);
+
+        // const setUserCart = actions.setUserCart(res.data[0].cart);
+
+        res.data[0].cart?.map((item) => dispatch(setUserCart(item)));
+
         dispatch(loginAction);
+        // dispatch(setUserCart);
       } else {
         const loginFailureAction = actions.loginFailure();
         dispatch(loginFailureAction);
@@ -97,7 +119,7 @@ export const handleAddCart =
       price: price,
       qty: qty,
       url: url,
-      mrp: Math.floor((discount * price) / 100),
+      mrp: Math.floor(Number(price) - (Number(discount) * Number(price)) / 100),
       delDate: "Tue Feb 1",
       delCharge: price > 1000 ? "Free" : 40,
       token: loadData("token"),
@@ -146,6 +168,43 @@ export const handleLogout = () => (dispatch) => {
       const emptyCart = actions.emptyCart();
       dispatch(logoutAction);
       dispatch(emptyCart);
+    })
+    .catch((err) => alert(err.message));
+};
+
+export const handleCartItemChange = (id, qty, count) => (dispatch) => {
+  const payLoad = {
+    qty: qty + count,
+  };
+  const config = {
+    url: `http://localhost:3001/cart/${id}`,
+    method: "PATCH",
+    data: payLoad,
+  };
+
+  return axios(config)
+    .then((res) => {
+      console.log(res);
+      if (count === 1) {
+        const increment = actions.handleIncrement(id, 1);
+        dispatch(increment);
+      } else if (count === -1) {
+        const decrement = actions.handleDecrement(id, -1);
+        dispatch(decrement);
+      }
+    })
+    .catch((err) => alert(err.message));
+};
+
+export const removeFromCart = (productId) => (dispatch) => {
+  const config = {
+    url: `http://localhost:3001/cart/${productId}`,
+    method: "DELETE",
+  };
+  return axios(config)
+    .then((res) => {
+      const removeAction = actions.removeCart(productId);
+      dispatch(removeAction);
     })
     .catch((err) => alert(err.message));
 };

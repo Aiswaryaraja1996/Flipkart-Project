@@ -1,6 +1,9 @@
 import { Button, Box, Typography, Card } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { removeFromCart, handleCartItemChange } from "../../redux/Api";
 
 export default function CartItem({ item }) {
+  const dispatch = useDispatch();
   console.log(item);
   const fassured =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/fa_62673a.png";
@@ -57,9 +60,7 @@ export default function CartItem({ item }) {
               />
             </div>
             <Typography style={{ margin: "20px 0" }}>
-              <span style={{ fontSize: 18, fontWeight: 500 }}>
-                ₹{item.mrp}
-              </span>
+              <span style={{ fontSize: 18, fontWeight: 500 }}>₹{item.mrp}</span>
               &nbsp;&nbsp;&nbsp;
               <span style={{ color: "#878787", fontSize: 14 }}>
                 <strike>₹{item.price}</strike>
@@ -92,12 +93,17 @@ export default function CartItem({ item }) {
               alignItems: "center",
             }}
           >
-            <div style={{ display: "flex", color: "#212121",alignItems: "center"}}>
+            <div
+              style={{
+                display: "flex",
+                color: "#212121",
+                alignItems: "center",
+              }}
+            >
               <button
                 style={{
-                  color: "#c2c2c2",
                   borderColor: "#e0e0e0",
-                  cursor: "auto",
+                  cursor: "pointer",
                   width: "28px",
                   height: "28px",
                   background: "linear-gradient(#fff,#f9f9f9)",
@@ -108,6 +114,10 @@ export default function CartItem({ item }) {
                   paddingTop: "1px",
                   lineheight: 1,
                 }}
+                disabled={item.qty === 1 ? true : false}
+                onClick={() =>
+                  dispatch(handleCartItemChange(item.id, item.qty, -1))
+                }
               >
                 –
               </button>
@@ -134,14 +144,13 @@ export default function CartItem({ item }) {
                     verticalAlign: "middle",
                     textAlign: "center",
                   }}
-                  value="1"
+                  value={item.qty}
                 />
               </div>
               <button
                 style={{
-                  color: "#c2c2c2",
                   borderColor: "#e0e0e0",
-                  cursor: "auto",
+                  cursor: "pointer",
                   width: "28px",
                   height: "28px",
                   background: "linear-gradient(#fff,#f9f9f9)",
@@ -152,6 +161,9 @@ export default function CartItem({ item }) {
                   paddingTop: "1px",
                   lineheight: 1,
                 }}
+                onClick={() =>
+                  dispatch(handleCartItemChange(item.id, item.qty, 1))
+                }
               >
                 {" "}
                 +{" "}
@@ -181,6 +193,7 @@ export default function CartItem({ item }) {
                     cursor: "pointer",
                     marginRight: "25px",
                   }}
+                  onClick={() => dispatch(removeFromCart(item.id))}
                 >
                   REMOVE
                 </div>

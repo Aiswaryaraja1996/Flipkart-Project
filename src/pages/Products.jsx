@@ -1,25 +1,56 @@
 import NavBar from "../components/common/NavBar";
 import TopBannerOtherPage from "../components/common/TopBannerOtherPage";
 import Filter from "../components/products/Filter";
-import Grid from "@mui/material/Grid";
+import { Grid, Typography } from "@mui/material/";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 
 import ProductCard from "../components/products/ProductCard";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/Api";
 
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
 export default function Products() {
   const { query } = useParams();
   const dispatch = useDispatch();
 
+  const [rule, setRule] = useState("");
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const product = useSelector((state) => state.product.products);
+
+  const handleSort = (n) => {
+    setRule(n);
+  };
 
   console.log(product);
   useEffect(() => dispatch(getProducts(query)), []);
+
+  const breadcrumbs = [
+    <Link to="/" style={{ fontSize: "12px", color: "#878787" }}>
+      Home
+    </Link>,
+    <Typography sx={{ fontSize: "12px", color: "#878787" }}>
+      Watches
+    </Typography>,
+  ];
   return (
-    
     <div style={{ backgroundColor: "#f1f3f6" }}>
       <NavBar />
       <TopBannerOtherPage />
@@ -66,26 +97,150 @@ export default function Products() {
                   background: "#fff",
                   padding: "12px 16px 0",
                   borderBottom: "1px solid #f0f0f0",
-                  height: "100%",
                   minHeight: "72px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
                 }}
               >
-                <div> </div>
-                <div> </div>
-                <div> </div>
-
-                <div style={{ display: "block", maxWidth: "100%" }}>
-                  <Grid
-                    container
-                    sx={{ paddingTop: "8px" }}
-                    spacing={1}
-                    justifyContent="space-between"
+                <div>
+                  <Breadcrumbs separator="›" aria-label="breadcrumb">
+                    {breadcrumbs}
+                  </Breadcrumbs>
+                </div>
+                <div>
+                  <span
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      marginTop: "8px",
+                      display: "inline-block",
+                      color: "#212121",
+                      lineHeight: 1.4,
+                    }}
                   >
-                    {product?.map((item) => (
+                    Showing 1 - {product.length + 1} of {product.length + 1}{" "}
+                    results for <span>"</span>
+                    {query}
+                    <span>"</span>
+                  </span>{" "}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: "14px",
+                  }}
+                >
+                  <span
+                    style={{
+                      borderBottom: "2px solid transparent",
+                      display: "inline-block",
+                      fontWeight: 500,
+                      padding: "8px 10px 4px 0",
+                    }}
+                  >
+                    Sort By
+                  </span>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="basic tabs example"
+                  >
+                    <Tab
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "14px",
+                        padding: "8px 0 4px",
+                        margin: "0 10px",
+                        fontWeight: "normal",
+                        color: "black",
+                      }}
+                      label="Relevance"
+                      {...a11yProps(0)}
+                    />
+                    <Tab
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "14px",
+                        padding: "8px 0 4px",
+                        margin: "0 10px",
+                        fontWeight: "normal",
+                        color: "black",
+                      }}
+                      label="Popularity"
+                      {...a11yProps(1)}
+                    />
+                    <Tab
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "14px",
+                        padding: "8px 0 4px",
+                        margin: "0 10px",
+                        fontWeight: "normal",
+                        color: "black",
+                      }}
+                      label="Price -- Low to High"
+                      {...a11yProps(2)}
+                      onClick={() => handleSort("Asc")}
+                    />
+                    <Tab
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "14px",
+                        padding: "8px 0 4px",
+                        margin: "0 10px",
+                        fontWeight: "normal",
+                        color: "black",
+                      }}
+                      label="Price -- High to Low"
+                      {...a11yProps(3)}
+                      onClick={() => handleSort("Desc")}
+                    />
+                    <Tab
+                      sx={{
+                        textTransform: "none",
+                        fontSize: "14px",
+                        padding: "8px 0 4px",
+                        margin: "0 10px",
+                        fontWeight: "normal",
+                        color: "black",
+                      }}
+                      label="Newest First"
+                      {...a11yProps(4)}
+                    />
+                  </Tabs>
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "block",
+                  maxWidth: "100%",
+                  paddingTop: "8px",
+                }}
+              >
+                <Grid
+                  container
+                  sx={{ paddingTop: "8px" }}
+                  spacing={1}
+                  justifyContent="space-between"
+                >
+                  {product
+                    ?.sort((a, b) => {
+                      if (rule === null) {
+                        return 0;
+                      }
+                      if (rule === "Asc") {
+                        return a.price - b.price;
+                      }
+                      if (rule === "Desc") {
+                        return b.price - a.price;
+                      }
+                    })
+                    .map((item) => (
                       <ProductCard item={item} />
                     ))}
-                  </Grid>
-                </div>
+                </Grid>
               </div>
             </div>
           </div>
