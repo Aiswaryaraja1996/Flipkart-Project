@@ -9,6 +9,7 @@ body {
   overflow-x: hidden;
   box-sizing: border-box;
   line-height: 1.4;
+  background: rgb(241, 243, 246);
 }
 
 td {
