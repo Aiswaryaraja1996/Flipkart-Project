@@ -30,6 +30,8 @@ export default function ProductReducer(state = initialState, action) {
       return { ...state, isError: true };
     case actionConstants.EMPTY_CART:
       return { ...state, cart: [] };
+    // case actionConstants.SET_USER_CART:
+    //   return { ...state, cart: action.payload.cart };
     case actionConstants.ADD_CART:
       saveData("cart", [...state.cart, action.payload]);
       // if (state.cart.some((item) => item.id === action.payload.id)) {
@@ -45,17 +47,21 @@ export default function ProductReducer(state = initialState, action) {
       return { ...state, cart: [...state.cart, action.payload] };
     // }
     case actionConstants.REMOVE_CART:
-      const existingCartItem = state.cart.find(
-        (item) => item.id === action.payload.id
-      );
-      //if there is only 1, upon clicking, we should remove the item from the array
-      if (existingCartItem.qty === 1) {
-        return {
-          ...state,
-          cart: state.cart.filter((item) => item.id !== action.payload.id),
-        };
-      }
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
+      };
 
+    case actionConstants.INCREMENT_ITEM:
+      return {
+        ...state,
+        cart: state.cart.map((i) =>
+          i.id === action.payload.id
+            ? { ...i, qty: i.qty + action.payload.qty }
+            : i
+        ),
+      };
+    case actionConstants.DECREMENT_ITEM:
       return {
         ...state,
         cart: state.cart.map((item) =>

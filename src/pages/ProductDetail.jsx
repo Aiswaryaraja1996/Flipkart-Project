@@ -206,7 +206,11 @@ const ProductDetail = () => {
 
               <Typography sx={{ marginLeft: "24px" }}>
                 <span style={{ fontSize: "28px" }}>
-                  ₹{Math.floor((product.discount * product.price) / 100)}
+                  ₹
+                  {Math.floor(
+                    Number(product.price) -
+                      (Number(product.discount) * Number(product.price)) / 100
+                  )}
                 </span>
                 &nbsp;&nbsp;&nbsp;
                 <span

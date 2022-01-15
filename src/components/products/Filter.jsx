@@ -2,6 +2,9 @@ import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { useState } from "react";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -15,7 +18,11 @@ export default function Filter() {
   };
   return (
     <Stack
-      sx={{ background: "#fff", boxShadow: "0 1px 8px 0 rgb(0 0 0 / 6%)",width:"100%" }}
+      sx={{
+        background: "#fff",
+        boxShadow: "0 1px 8px 0 rgb(0 0 0 / 6%)",
+        width: "100%",
+      }}
     >
       <section
         style={{
@@ -212,6 +219,405 @@ export default function Filter() {
               </select>
             </div>
           </div>
+        </section>
+
+        <section
+          style={{
+            padding: "16px",
+            borderBottom: "1px solid #f0f0f0",
+            fontSize: "18px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "13px",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              letterSpacing: ".3px",
+              display: "inline-block",
+              paddingBottom: "8px",
+            }}
+          >
+            <span>BRAND</span>
+          </div>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Casio"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Fossil"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Titan"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Fastrack"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Allen Solly"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+          </FormGroup>
+        </section>
+
+        <section
+          style={{
+            padding: "16px",
+            borderBottom: "1px solid #f0f0f0",
+            fontSize: "18px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "13px",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              letterSpacing: ".3px",
+              display: "inline-block",
+              paddingBottom: "8px",
+            }}
+          >
+            <span>IDEAL FOR</span>
+          </div>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Boys & Girls"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Men & Women"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Women"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Men"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Boys"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="Girls"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+          </FormGroup>
+        </section>
+
+        <section
+          style={{
+            padding: "16px",
+            borderBottom: "1px solid #f0f0f0",
+            fontSize: "18px",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "13px",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              letterSpacing: ".3px",
+              display: "inline-block",
+              paddingBottom: "8px",
+            }}
+          >
+            <span>CUSTOMER RATINGS</span>
+          </div>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="4 & above"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="3 & above"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="2 & above"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  size="small"
+                  sx={{
+                    marginRight: "11px",
+                    padding: 0,
+                    "& .MuiSvgIcon-root": { fontSize: "18px" },
+                  }}
+                />
+              }
+              label="1 & above"
+              sx={{
+                margin: 0,
+                padding: "3px 0",
+                "& .MuiTypography-root": {
+                  fontWeight: "normal",
+                  fontSize: "14px",
+                  letterSpacing: 0,
+                },
+              }}
+            />
+          </FormGroup>
         </section>
       </div>
     </Stack>

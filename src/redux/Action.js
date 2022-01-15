@@ -10,22 +10,25 @@ export const actionConstants = {
   REGISTER_SUCCESS: "REGISTER_SUCCESS",
   LOGOUT: "LOGOUT",
   EMPTY_CART: "EMPTY_CART",
+  INCREMENT_ITEM: "INCREMENT_ITEM",
+  DECREMENT_ITEM: "DECREMENT_ITEM",
+  REMOVE_CART: "REMOVE_CART",
+  SET_USER_CART: "SET_USER_CART",
 };
 
-export const registerRequest = () =>{
+export const registerRequest = () => {
   return {
     type: actionConstants.REGISTER_REQUEST,
     payload: { isRegister: 1 },
   };
-}
+};
 
-
-export const registerSuccess = () =>{
+export const registerSuccess = () => {
   return {
     type: actionConstants.REGISTER_SUCCESS,
-    payload: { isRegister: 2},
+    payload: { isRegister: 2 },
   };
-}
+};
 
 export const loginUser = (token) => {
   return {
@@ -33,6 +36,8 @@ export const loginUser = (token) => {
     payload: { token: token },
   };
 };
+
+
 
 export const loginFailure = () => {
   return {
@@ -46,14 +51,14 @@ export const logout = () => {
     type: actionConstants.LOGOUT,
     payload: { isAuth: false },
   };
-}
+};
 
 export const emptyCart = () => {
-  return{
-    type : actionConstants.EMPTY_CART,
-    payload: {cart:[]}
-  }
-}
+  return {
+    type: actionConstants.EMPTY_CART,
+    payload: { cart: [] },
+  };
+};
 
 export const getProductsSuccess = (products) => {
   return {
@@ -63,7 +68,6 @@ export const getProductsSuccess = (products) => {
 };
 
 export const getSingle = (product) => {
- 
   return {
     type: actionConstants.GET_SINGLE_PRODUCT,
     payload: { product: product },
@@ -99,7 +103,28 @@ export const addCart = (data) => {
       delCharge: data.delCharge,
       delDate: data.delDate,
       qty: data.qty,
-      token:data.token
+      token: data.token,
     },
+  };
+};
+
+export const handleIncrement = (id, qty) => {
+  return {
+    type: actionConstants.INCREMENT_ITEM,
+    payload: { id: id, qty: qty },
+  };
+};
+
+export const handleDecrement = (id, qty) => {
+  return {
+    type: actionConstants.DECREMENT_ITEM,
+    payload: { id: id, qty: qty },
+  };
+};
+
+export const removeCart = (id) => {
+  return {
+    type: actionConstants.REMOVE_CART,
+    payload: { id: id },
   };
 };

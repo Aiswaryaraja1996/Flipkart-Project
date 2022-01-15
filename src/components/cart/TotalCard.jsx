@@ -11,14 +11,19 @@ export default function TotalCard({ cartItems }) {
 
   const totalAmount = () => {
     let price = 0,
-      discount = 0;
+      discount = 0,
+      totalPrice = 0,
+      totalDiscount = 0;
     console.log(cartItems);
     cartItems.map((item) => {
       price += item.price;
       discount += item.price - item.mrp;
+
+      totalPrice = price * item.qty;
+      totalDiscount = discount * item.qty;
     });
-    setPrice(price);
-    setDiscount(discount);
+    setPrice(totalPrice);
+    setDiscount(totalDiscount);
   };
   return (
     <Box sx={{ position: "sticky", backgroundColor: "white", width: "100%" }}>
@@ -78,7 +83,9 @@ export default function TotalCard({ cartItems }) {
           }}
         >
           Total Amount
-          <span style={{ float: "right" }}>₹{Number(price) - Number(discount) + 40}</span>
+          <span style={{ float: "right" }}>
+            ₹{Number(price) - Number(discount) + 40}
+          </span>
         </Typography>
         <Typography
           style={{
