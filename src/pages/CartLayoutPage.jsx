@@ -1,20 +1,33 @@
 import { Button, Grid, Box, Typography } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, shallowEqual } from "react-redux";
 
 import { CartFooter } from "../components/cart/CartFooter";
-import CartNavbar from "../components/cart/CartNavbar";
 import EmptyCart from "../components/cart/EmptyCart";
 import CartItem from "../components/cart/CartItem";
 import TotalCard from "../components/cart/TotalCard";
+import NavBar from "../components/common/NavBar";
+
+import { useDispatch } from "react-redux";
+import { getCart } from "../redux/Api";
+import { saveData } from "../utils/localStorage";
 
 export const CartLayoutPage = () => {
   const cartItems = useSelector((state) => state.product.cart);
+  const dispatch = useDispatch();
+  
 
-  console.log(cartItems);
+  const { cartDetails } = cartItems;
+
+  localStorage.removeItem("cart");
+  saveData("cart", cartItems);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [cartDetails]);
   return (
     <div style={{ background: "#F1F3F6", height: "100vh" }}>
-      <CartNavbar />
+      <NavBar page={1}/>
 
       {cartItems.length > 0 ? (
         <div
@@ -25,8 +38,16 @@ export const CartLayoutPage = () => {
             margin: "0 auto",
           }}
         >
-          <Grid container sx={{ padding: "8px", display: "flex",flexDirection: "row",justifyContent:"space-between"}}>
-            <Grid item  sx={{ paddingRight: 0,width:"68%" }}>
+          <Grid
+            container
+            sx={{
+              padding: "8px",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Grid item sx={{ paddingRight: 0, width: "68%" }}>
               <Box
                 sx={{
                   background: "#fff",
@@ -58,7 +79,16 @@ export const CartLayoutPage = () => {
                     alt="location"
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48ZWxsaXBzZSBjeD0iOSIgY3k9IjE0LjQ3OCIgZmlsbD0iI0ZGRTExQiIgcng9IjkiIHJ5PSIzLjUyMiIvPjxwYXRoIGZpbGw9IiMyODc0RjAiIGQ9Ik04LjYwOSA3LjAxYy0xLjA4IDAtMS45NTctLjgyNi0xLjk1Ny0xLjg0NSAwLS40ODkuMjA2LS45NTguNTczLTEuMzA0YTIuMDIgMi4wMiAwIDAgMSAxLjM4NC0uNTRjMS4wOCAwIDEuOTU2LjgyNSAxLjk1NiAxLjg0NCAwIC40OS0uMjA2Ljk1OS0uNTczIDEuMzA1cy0uODY0LjU0LTEuMzgzLjU0ek0zLjEzIDUuMTY1YzAgMy44NzQgNS40NzkgOC45MjIgNS40NzkgOC45MjJzNS40NzgtNS4wNDggNS40NzgtOC45MjJDMTQuMDg3IDIuMzEzIDExLjYzNCAwIDguNjA5IDAgNS41ODMgMCAzLjEzIDIuMzEzIDMuMTMgNS4xNjV6Ii8+PC9nPjwvc3ZnPg=="
                   />
-                  <span style={{ color: "#878787",marginRight:"8px",fontSize:"14px" }}> Deliver to</span>
+                  <span
+                    style={{
+                      color: "#878787",
+                      marginRight: "8px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {" "}
+                    Deliver to
+                  </span>
 
                   <div
                     style={{
@@ -115,9 +145,9 @@ export const CartLayoutPage = () => {
                 </Button>
               </Box>
             </Grid>
-            <Grid item sx={{width:"30%"}}>
-                    <TotalCard cartItems={cartItems} />
-                </Grid>
+            <Grid item sx={{ width: "30%" }}>
+              <TotalCard cartItems={cartItems} />
+            </Grid>
           </Grid>
         </div>
       ) : (

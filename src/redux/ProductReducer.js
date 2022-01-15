@@ -3,10 +3,12 @@ import { loadData, saveData } from "../utils/localStorage";
 
 const products = loadData("products") || [];
 const cart = loadData("cart") || [];
+const wishlist = loadData("wishlist") || [];
 
 const initialState = {
   products: products,
   cart: cart,
+  wishlist: wishlist,
   product: {},
   isLoading: true,
   isError: false,
@@ -30,28 +32,27 @@ export default function ProductReducer(state = initialState, action) {
       return { ...state, isError: true };
     case actionConstants.EMPTY_CART:
       return { ...state, cart: [] };
-    // case actionConstants.SET_USER_CART:
-    //   return { ...state, cart: action.payload.cart };
+    case actionConstants.GET_CART:
+      return { ...state, cart: action.payload.cart };
     case actionConstants.ADD_CART:
-      saveData("cart", [...state.cart, action.payload]);
-      // if (state.cart.some((item) => item.id === action.payload.id)) {
-      //   return {
-      //     ...state,
-      //     cart: state.cart.map((i) =>
-      //       i.id === action.payload.id
-      //         ? { ...i, qty: i.qty + action.payload.qty }
-      //         : i
-      //     ),
-      //   };
-      // } else {
       return { ...state, cart: [...state.cart, action.payload] };
-    // }
+    case actionConstants.ADD_WISHLIST:
+      return {
+        ...state,
+        wishlist: [...state.wishlist, action.payload.wishlist],
+      };
     case actionConstants.REMOVE_CART:
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload.id),
       };
-
+    case actionConstants.REMOVE_WISHLIST:
+      return {
+        ...state,
+        wishlist: state.wishlist.filter(
+          (item) => item.id !== action.payload.id
+        ),
+      };
     case actionConstants.INCREMENT_ITEM:
       return {
         ...state,

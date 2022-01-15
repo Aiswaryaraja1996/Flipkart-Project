@@ -6,7 +6,6 @@ export default function EmptyCart() {
       <div
         style={{
           width: "1200px",
-
           margin: "auto",
           background: "#FFFFFF",
           padding: "30px",

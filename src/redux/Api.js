@@ -17,8 +17,6 @@ export const handleRegister = (login) => (dispatch) => {
 
   return axios(config)
     .then((res) => {
-      console.log(res);
-
       const registerAction = actions.registerSuccess();
       dispatch(registerAction);
     })
@@ -26,7 +24,6 @@ export const handleRegister = (login) => (dispatch) => {
 };
 
 export const setUserCart = (payLoad) => (dispatch) => {
-  console.log(payLoad);
   const config = {
     url: "http://localhost:3001/cart/",
     method: "POST",
@@ -34,7 +31,6 @@ export const setUserCart = (payLoad) => (dispatch) => {
   };
   return axios(config)
     .then((res) => {
-      console.log(res);
       const addCartAction = actions.addCart(res.data);
       dispatch(addCartAction);
     })
@@ -48,7 +44,6 @@ export const handleLogin = (mobile) => (dispatch) => {
   };
   return axios(config)
     .then((res) => {
-      console.log(res.data);
       if (res.data[0].id) {
         const loginAction = actions.loginUser(res.data[0].id);
 
@@ -93,7 +88,7 @@ export const getProducts =
 export const getSingleProduct = (id) => (dispatch) => {
   const requestAction = actions.getProductsRequest();
   dispatch(requestAction);
-  console.log(id);
+
   const config = {
     url: `http://localhost:3001/products/${id}`,
     method: "GET",
@@ -111,7 +106,6 @@ export const getSingleProduct = (id) => (dispatch) => {
 
 export const handleAddCart =
   (id, title, discount, price, qty, url) => (dispatch) => {
-    console.log(id, title, url, discount, price, qty);
     const payLoad = {
       id: id,
       title: title,
@@ -132,7 +126,6 @@ export const handleAddCart =
     };
     return axios(config)
       .then((res) => {
-        console.log(res);
         const addCartAction = actions.addCart(res.data);
         dispatch(addCartAction);
       })
@@ -162,7 +155,6 @@ export const handleLogout = () => (dispatch) => {
 
   return axios(config)
     .then((res) => {
-      console.log(res);
       payLoad.cart?.map((item) => deleteCartData(item.id));
       const logoutAction = actions.logout();
       const emptyCart = actions.emptyCart();
@@ -205,6 +197,70 @@ export const removeFromCart = (productId) => (dispatch) => {
     .then((res) => {
       const removeAction = actions.removeCart(productId);
       dispatch(removeAction);
+    })
+    .catch((err) => alert(err.message));
+};
+
+export const getCart = () => (dispatch) => {
+  const config = {
+    url: `http://localhost:3001/cart/`,
+    method: "GET",
+  };
+
+  return axios(config)
+    .then((res) => {
+      const getCartItems = actions.getCartItems(res.data);
+      dispatch(getCartItems);
+    })
+    .catch((err) => alert(err.message));
+};
+
+export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
+  console.log(inWishlist);
+  const payLoad = {
+    id: item.id,
+    url: item.url,
+    discount: item.discount,
+    price: item.price,
+    shortTitle: item.shortTitle,
+    review: item.customerRatings.length,
+    token: loadData("token"),
+  };
+  if (inWishlist) {
+    const config = {
+      url: `http://localhost:3001/wishlist/`,
+      method: "POST",
+      data: payLoad,
+    };
+    return axios(config)
+      .then((res) => {
+        const addItems = actions.addWishlist(payLoad);
+        dispatch(addItems);
+      })
+      .catch((err) => alert(err.message));
+  } else {
+    const config = {
+      url: `http://localhost:3001/wishlist/${item.id}`,
+      method: "DELETE",
+    };
+    return axios(config)
+      .then((res) => {
+        const removeItems = actions.removeWishlist(item.id);
+        dispatch(removeItems);
+      })
+      .catch((err) => alert(err.message));
+  }
+};
+
+export const getWishList = () => (dispatch) => {
+  const config = {
+    url: `http://localhost:3001/wishlist/`,
+    method: "GET",
+  };
+  return axios(config)
+    .then((res) => {
+      const wishlistAction = actions.getWishList(res.data);
+      dispatch(wishlistAction);
     })
     .catch((err) => alert(err.message));
 };

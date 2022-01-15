@@ -6,24 +6,23 @@ export default function TotalCard({ cartItems }) {
   const [discount, setDiscount] = useState(0);
 
   useEffect(() => {
+    console.log(1);
     totalAmount();
   }, [cartItems]);
 
   const totalAmount = () => {
     let price = 0,
-      discount = 0,
-      totalPrice = 0,
-      totalDiscount = 0;
+      discount = 0;
+
     console.log(cartItems);
     cartItems.map((item) => {
-      price += item.price;
-      discount += item.price - item.mrp;
-
-      totalPrice = price * item.qty;
-      totalDiscount = discount * item.qty;
+      for (var i = 0; i < item.qty; i++) {
+        price += item.price;
+        discount += item.price - item.mrp;
+      }
     });
-    setPrice(totalPrice);
-    setDiscount(totalDiscount);
+    setPrice(price);
+    setDiscount(discount);
   };
   return (
     <Box sx={{ position: "sticky", backgroundColor: "white", width: "100%" }}>

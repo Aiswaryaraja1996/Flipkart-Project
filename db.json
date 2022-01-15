@@ -795,13 +795,13 @@
     {
       "id": 1,
       "title": "TITAN",
-      "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
       "discount": 50,
       "price": 1999,
+      "qty": 1,
+      "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
       "mrp": 999,
-      "delCharge": "Free",
       "delDate": "Tue Feb 1",
-      "qty": 2,
+      "delCharge": "Free",
       "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
     },
     {
@@ -809,7 +809,7 @@
       "title": "FOSSIL",
       "discount": 31,
       "price": 1699,
-      "qty": 5,
+      "qty": 1,
       "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
       "mrp": 1172,
       "delDate": "Tue Feb 1",
@@ -817,7 +817,17 @@
       "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
     }
   ],
-  "wishlist": [],
+  "wishlist": [
+    {
+      "id": 3,
+      "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/j/v/j/c-38044pp03-fastrack-original-imafgyqxzstfyeqg.jpeg?q=50",
+      "discount": 24,
+      "price": 1599,
+      "shortTitle": "38024PP25 Minimalists Analog Watch - For Men",
+      "review": 3,
+      "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
+    }
+  ],
   "registeredUsers": [
     {
       "id": "38dc4c1b-9af2-47e9-aab5-005641319ebe",
@@ -827,25 +837,13 @@
         {
           "id": 1,
           "title": "TITAN",
-          "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
           "discount": 50,
           "price": 1999,
+          "qty": 3,
+          "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
           "mrp": 999,
-          "delCharge": "Free",
           "delDate": "Tue Feb 1",
-          "qty": 1,
-          "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
-        },
-        {
-          "id": 2,
-          "title": "FOSSIL",
-          "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
-          "discount": 31,
-          "price": 1699,
-          "mrp": 1172,
           "delCharge": "Free",
-          "delDate": "Tue Feb 1",
-          "qty": 1,
           "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
         }
       ],

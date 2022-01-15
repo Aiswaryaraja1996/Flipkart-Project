@@ -127,8 +127,8 @@ export default function Products() {
                       lineHeight: 1.4,
                     }}
                   >
-                    Showing 1 - {product.length + 1} of {product.length + 1}{" "}
-                    results for <span>"</span>
+                    Showing 1 - {product.length} of {products.length} results
+                    for <span>"</span>
                     {query}
                     <span>"</span>
                   </span>{" "}
