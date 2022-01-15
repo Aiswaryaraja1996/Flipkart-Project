@@ -1,13 +1,15 @@
 import NavBar from "../components/common/NavBar";
 import TopBannerOtherPage from "../components/common/TopBannerOtherPage";
 import Filter from "../components/products/Filter";
-import { Grid, Typography } from "@mui/material/";
+import { Grid, Typography, Pagination } from "@mui/material/";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import Footer from "../components/common/Footer";
+// import Pagination from "../components/products/Pagination";
 
 import ProductCard from "../components/products/ProductCard";
 import { useParams } from "react-router-dom";
@@ -28,12 +30,18 @@ export default function Products() {
 
   const [rule, setRule] = useState("");
   const [value, setValue] = useState(0);
+  const [page, setPage] = useState(1);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const product = useSelector((state) => state.product.products);
+  const products = useSelector((state) => state.product.products);
+
+  const perPage = 12;
+  const product = products.filter(
+    (value, i) => i >= (page - 1) * perPage && i < page * perPage
+  );
 
   const handleSort = (n) => {
     setRule(n);
@@ -231,21 +239,55 @@ export default function Products() {
                         return 0;
                       }
                       if (rule === "Asc") {
-                        return a.price - b.price;
+                        return (
+                          a.price -
+                          (a.price * a.discount) / 100 -
+                          (b.price - (b.price * b.discount) / 100)
+                        );
                       }
                       if (rule === "Desc") {
-                        return b.price - a.price;
+                        return (
+                          b.price -
+                          (b.price * b.discount) / 100 -
+                          (a.price - (a.price * a.discount) / 100)
+                        );
                       }
                     })
                     .map((item) => (
                       <ProductCard item={item} />
                     ))}
+                  <div style={{ margin: "0 8px",width:"100%" }}>
+                    <div
+                      style={{
+                        background: "#fff",
+                        borderTop: "1px solid #e0e0e0",
+                        display: "flex",
+                        justifyContent: "space-between",
+
+                        alignItems: "center",
+                        padding: "10px",
+                        lineHeight: "32px",
+                      }}
+                    >
+                    <div>Page 1 of 10</div>
+                      <div style={{width:"60%"}}>
+                        <Pagination count={10} color="primary" />
+                      </div>
+                    </div>
+
+                    {/* <Pagination
+                      currPage={page}
+                      total={4}
+                      onPageChange={(page) => setPage(page)}
+                    ></Pagination> */}
+                  </div>
                 </Grid>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
