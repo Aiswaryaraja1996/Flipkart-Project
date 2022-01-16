@@ -1,16 +1,32 @@
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleAddWishlist } from "../../redux/Api";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import IconButton from "@mui/material/IconButton";
 
 export default function ProductCard({ item }) {
   console.log(item);
+  const [inWishlist, setInWishlist] = useState(false);
+  const wishlist = useSelector((state) => state.product.wishlist);
+  const dispatch = useDispatch();
+
   let mrp = Math.floor(
     Number(item.price) - (Number(item.discount) * Number(item.price)) / 100
   );
+
+  var val = wishlist.find((i) => i.id === item.id);
+  const addWishlist = () => {
+    if (val != null || val != undefined) {
+      setInWishlist(false);
+      dispatch(handleAddWishlist(item, false));
+    } else {
+      setInWishlist(true);
+      dispatch(handleAddWishlist(item, true));
+    }
+  };
   return (
     <Grid
       item
@@ -25,55 +41,58 @@ export default function ProductCard({ item }) {
         },
       }}
     >
-      <Link to={`/productDetail/${item.id}`}>
+      <div
+        style={{
+          filter: "none!important",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          padding: "3px",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton size="large" onClick={addWishlist}>
+            <FavoriteIcon
+              sx={{ color: inWishlist || val ? "red" : "#c2c2c2" }}
+            />
+          </IconButton>
+        </div>
         <div
-          style={{
-            filter: "none!important",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            padding: "3px",
-          }}
+          style={{ width: "100%", position: "relative", paddingTop: "120%" }}
         >
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <FavoriteIcon sx={{ color: "#c2c2c2" }} />
-          </div>
           <div
-            style={{ width: "100%", position: "relative", paddingTop: "120%" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
 
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              paddingTop: "120%",
+            }}
+          >
+            <img
+              src={item.url}
+              alt={item.title}
+              style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: "100%",
-                paddingTop: "120%",
+                bottom: 0,
+                right: 0,
+                maxWidth: "100%",
+                maxHeight: "100%",
+                transition: "opacity .5s linear",
+                opacity: 1,
+                margin: "auto",
+                zIndex: 0,
               }}
-            >
-              <img
-                src={item.url}
-                alt={item.title}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  bottom: 0,
-                  right: 0,
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  transition: "opacity .5s linear",
-                  opacity: 1,
-                  margin: "auto",
-                  zIndex: 0,
-                }}
-              />
-            </div>
+            />
           </div>
-
+        </div>
+        <Link to={`/productDetail/${item.id}`}>
           <div
             style={{
               padding: "5px 16px 8px",
@@ -95,7 +114,7 @@ export default function ProductCard({ item }) {
                 overflow: "hidden",
                 padding: 0,
                 fontSize: "14px",
-                color:"black"
+                color: "black",
               }}
             >
               {item.shortTitle}
@@ -146,8 +165,8 @@ export default function ProductCard({ item }) {
               </div>
             </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </Grid>
   );
 }

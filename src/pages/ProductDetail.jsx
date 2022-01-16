@@ -27,6 +27,8 @@ import { useEffect } from "react";
 
 import { getSingleProduct } from "../redux/Api";
 
+import { Link } from "react-router-dom";
+
 const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -112,36 +114,65 @@ const ProductDetail = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Button
-                    sx={{
-                      background: "#ff9f00",
-                      color: "#FFF",
-                      width: "46%",
-                      height: 50,
-                      borderRadius: "none",
-                      "&:hover": {
-                        backgroundColor: "#ff9f00",
-                      },
-                    }}
-                    style={{ marginRight: 10 }}
-                    variant="contained"
-                    onClick={() =>
-                      dispatch(
-                        handleAddCart(
-                          product.id,
-                          product.title,
-                          product.discount,
-                          product.price,
-                          1,
-                          product.url
+                  {inCart ? (
+                    <Button
+                      sx={{
+                        background: "#ff9f00",
+                        color: "#FFF",
+                        width: "46%",
+                        height: 50,
+                        borderRadius: "none",
+                        "&:hover": {
+                          backgroundColor: "#ff9f00",
+                        },
+                      }}
+                      style={{ marginRight: 10 }}
+                      variant="contained"
+                    >
+                      <Link to="/cart">
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <ShoppingCartIcon sx={{ color: "#FFF" }} />
+                          <div>Go to Cart</div>
+                        </div>
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      sx={{
+                        background: "#ff9f00",
+                        color: "#FFF",
+                        width: "46%",
+                        height: 50,
+                        borderRadius: "none",
+                        "&:hover": {
+                          backgroundColor: "#ff9f00",
+                        },
+                      }}
+                      style={{ marginRight: 10 }}
+                      variant="contained"
+                      onClick={() =>
+                        dispatch(
+                          handleAddCart(
+                            product.id,
+                            product.title,
+                            product.discount,
+                            product.price,
+                            1,
+                            product.url
+                          )
                         )
-                      )
-                    }
-                  >
-                    <ShoppingCartIcon sx={{ color: "#FFF" }} />
-
-                    {inCart ? "Go to Cart" : "Add to Cart"}
-                  </Button>
+                      }
+                    >
+                      <ShoppingCartIcon sx={{ color: "#FFF" }} />
+                      Add to Cart
+                    </Button>
+                  )}
                   <Button
                     sx={{
                       background: "#fb641b",

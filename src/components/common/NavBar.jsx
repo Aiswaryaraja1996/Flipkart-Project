@@ -21,8 +21,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import BadgeUnstyled from "@mui/base/BadgeUnstyled";
 import PaymentsIcon from "@mui/icons-material/Payments";
-import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
@@ -150,7 +150,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function NavBar() {
+export default function NavBar({ page = 0 }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
@@ -177,7 +177,7 @@ export default function NavBar() {
     if (isAuth) {
       handleCloseModal();
     }
-  }, [isAuth,cart]);
+  }, [isAuth, cart]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -295,24 +295,26 @@ export default function NavBar() {
               </div>
 
               <div>
-                <Button
-                  sx={{
-                    boxShadow: "none",
-                    "&:hover": {
-                      backgroundColor: "transparent !important",
+                {page === 0 && (
+                  <Button
+                    sx={{
                       boxShadow: "none",
-                    },
-                  }}
-                  id="demo-customized-button"
-                  aria-controls={open ? "demo-customized-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  variant="contained"
-                  disableElevation
-                  endIcon={<KeyboardArrowDownIcon />}
-                >
-                  Menu
-                </Button>
+                      "&:hover": {
+                        backgroundColor: "transparent !important",
+                        boxShadow: "none",
+                      },
+                    }}
+                    id="demo-customized-button"
+                    aria-controls={open ? "demo-customized-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    variant="contained"
+                    disableElevation
+                    endIcon={<KeyboardArrowDownIcon />}
+                  >
+                    Menu
+                  </Button>
+                )}
 
                 <StyledMenu
                   id="demo-customized-menu"
@@ -332,43 +334,51 @@ export default function NavBar() {
                     Orders
                   </MenuItem>
                   <Divider sx={{ my: 0.5 }} />
-                  <MenuItem disableRipple>
-                    <FavoriteIcon color="primary" />
-                    Wishlist
-                  </MenuItem>
+                  <Link to="/wishlist">
+                    <MenuItem disableRipple>
+                      {" "}
+                      <FavoriteIcon color="primary" />
+                      <span style={{ color: "black" }}>Wishlist</span>
+                    </MenuItem>
+                  </Link>
                   <MenuItem
                     onClick={() => dispatch(handleLogout())}
                     disableRipple
                   >
-                    <LogoutIcon color="primary" />
+                    <PowerSettingsNewIcon color="primary" />
                     Logout
                   </MenuItem>
                 </StyledMenu>
               </div>
 
-              <Button
-                sx={{
-                  boxShadow: "none",
-                  "&:hover": {
-                    backgroundColor: "transparent !important",
+              {page === 0 && (
+                <Button
+                  sx={{
                     boxShadow: "none",
-                  },
-                }}
-                variant="contained"
-                startIcon={
-                  cart.length === 0 ? (
-                    <ShoppingCartIcon sx={{ color: "white" }} />
-                  ) : (
-                    <StyledBadge badgeContent={cart.length}>
+                    "&:hover": {
+                      backgroundColor: "transparent !important",
+                      boxShadow: "none",
+                    },
+                  }}
+                  variant="contained"
+                  startIcon={
+                    cart.length === 0 ? (
                       <ShoppingCartIcon sx={{ color: "white" }} />
-                    </StyledBadge>
-                  )
-                }
-              >
-                <Link style={{ textDecoration: "none" }} to="/cart">
-                  Cart
-                </Link>
-              </Button>
+                    ) : (
+                      <StyledBadge badgeContent={cart.length}>
+                        <ShoppingCartIcon sx={{ color: "white" }} />
+                      </StyledBadge>
+                    )
+                  }
+                >
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="/cart"
+                  >
+                    Cart
+                  </Link>
+                </Button>
+              )}
             </Stack>
           </Stack>
         </Toolbar>

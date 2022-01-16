@@ -43,7 +43,7 @@ export default function RegisteredUser() {
   };
 
   useEffect(() => {
-    if (isRegister === 2) {
+    if (isRegister === 3) {
       setOpenRegister(true);
     }
     if (isError === 2) {

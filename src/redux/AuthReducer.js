@@ -24,13 +24,13 @@ export default function AuthReducer(state = initialState, action) {
       localStorage.removeItem("token");
       localStorage.removeItem("cart");
 
-      return { ...state, isAuth: false, token: null, isRegister: 1 };
+      return { ...state, isAuth: false, token: null, isRegister: 2 };
     case actionConstants.LOGIN_FAILURE:
       return { ...state, isAuth: false, isError: 2 };
     case actionConstants.REGISTER_REQUEST:
       return { ...state, isRegister: 1 };
     case actionConstants.REGISTER_SUCCESS:
-      return { ...state, isRegister: 2 };
+      return { ...state, isRegister: 3 };
     default:
       return state;
   }

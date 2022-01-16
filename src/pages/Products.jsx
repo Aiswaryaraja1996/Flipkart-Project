@@ -48,7 +48,7 @@ export default function Products() {
   };
 
   console.log(product);
-  useEffect(() => dispatch(getProducts(query)), []);
+  useEffect(() => dispatch(getProducts(query)), [page]);
 
   const breadcrumbs = [
     <Link to="/" style={{ fontSize: "12px", color: "#878787" }}>
@@ -127,8 +127,8 @@ export default function Products() {
                       lineHeight: 1.4,
                     }}
                   >
-                    Showing 1 - {product.length + 1} of {product.length + 1}{" "}
-                    results for <span>"</span>
+                    Showing 1 - {product.length} of {products.length} results
+                    for <span>"</span>
                     {query}
                     <span>"</span>
                   </span>{" "}
@@ -256,7 +256,7 @@ export default function Products() {
                     .map((item) => (
                       <ProductCard item={item} />
                     ))}
-                  <div style={{ margin: "0 8px",width:"100%" }}>
+                  <div style={{ margin: "0 8px", width: "100%" }}>
                     <div
                       style={{
                         background: "#fff",
@@ -269,17 +269,15 @@ export default function Products() {
                         lineHeight: "32px",
                       }}
                     >
-                    <div>Page 1 of 10</div>
-                      <div style={{width:"60%"}}>
-                        <Pagination count={10} color="primary" />
+                      <div>Page 1 of 10</div>
+                      <div style={{ width: "60%" }}>
+                        <Pagination
+                          count={10}
+                          color="primary"
+                          onChange={(e, v) => setPage(v)}
+                        />
                       </div>
                     </div>
-
-                    {/* <Pagination
-                      currPage={page}
-                      total={4}
-                      onPageChange={(page) => setPage(page)}
-                    ></Pagination> */}
                   </div>
                 </Grid>
               </div>

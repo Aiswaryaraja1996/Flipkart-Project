@@ -1,8 +1,9 @@
 import { Switch, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import {CartLayoutPage} from "../pages/CartLayoutPage";
+import { CartLayoutPage } from "../pages/CartLayoutPage";
 import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
+import Wishlist from "../pages/Wishlist";
 
 export default function Allroutes() {
   return (
@@ -18,6 +19,9 @@ export default function Allroutes() {
       </Route>
       <Route exact path="/products/:query">
         <Products />
+      </Route>
+      <Route exact path="/wishlist">
+        <Wishlist />
       </Route>
     </Switch>
   );

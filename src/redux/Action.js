@@ -1,19 +1,28 @@
 export const actionConstants = {
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
   LOGIN_FAILURE: "LOGIN_FAILURE",
-  ADD_CART: "ADD_CART",
+  LOGOUT: "LOGOUT",
+
+  REGISTER_REQUEST: "REGISTER_REQUEST",
+  REGISTER_SUCCESS: "REGISTER_SUCCESS",
+
   GET_PRODUCTS_SUCCESS: "GET_PRODUCTS_SUCCESS",
   GET_PRODUCTS_REQUEST: "GET_PRODUCTS_REQUEST",
   GET_PRODUCTS_FAILURE: "GET_PRODUCTS_FAILURE",
   GET_SINGLE_PRODUCT: "GET_SINGLE_PRODUCT",
-  REGISTER_REQUEST: "REGISTER_REQUEST",
-  REGISTER_SUCCESS: "REGISTER_SUCCESS",
-  LOGOUT: "LOGOUT",
+
+  GET_CART: "GET_CART",
+  ADD_CART: "ADD_CART",
   EMPTY_CART: "EMPTY_CART",
   INCREMENT_ITEM: "INCREMENT_ITEM",
   DECREMENT_ITEM: "DECREMENT_ITEM",
   REMOVE_CART: "REMOVE_CART",
   SET_USER_CART: "SET_USER_CART",
+
+  GET_WISHLIST: "GET_WISHLIST",
+  ADD_WISHLIST: "ADD_WISHLIST",
+  REMOVE_WISHLIST: "REMOVE_WISHLIST",
+  EMPTY_WISHLIST: "EMPTY_WISHLIST",
 };
 
 export const registerRequest = () => {
@@ -26,7 +35,7 @@ export const registerRequest = () => {
 export const registerSuccess = () => {
   return {
     type: actionConstants.REGISTER_SUCCESS,
-    payload: { isRegister: 2 },
+    payload: { isRegister: 3 },
   };
 };
 
@@ -36,8 +45,6 @@ export const loginUser = (token) => {
     payload: { token: token },
   };
 };
-
-
 
 export const loginFailure = () => {
   return {
@@ -49,7 +56,7 @@ export const loginFailure = () => {
 export const logout = () => {
   return {
     type: actionConstants.LOGOUT,
-    payload: { isAuth: false },
+    payload: { isAuth: false, isRegister: 2 },
   };
 };
 
@@ -57,6 +64,13 @@ export const emptyCart = () => {
   return {
     type: actionConstants.EMPTY_CART,
     payload: { cart: [] },
+  };
+};
+
+export const emptyWishlist = () => {
+  return {
+    type: actionConstants.EMPTY_WISHLIST,
+    payload: { wishlist: [] },
   };
 };
 
@@ -126,5 +140,34 @@ export const removeCart = (id) => {
   return {
     type: actionConstants.REMOVE_CART,
     payload: { id: id },
+  };
+};
+
+export const getCartItems = (cart) => {
+  return {
+    type: actionConstants.GET_CART,
+    payload: { cart: cart },
+  };
+};
+
+export const addWishlist = (wishlist) => {
+  console.log(wishlist);
+  return {
+    type: actionConstants.ADD_WISHLIST,
+    payload: { wishlist: wishlist },
+  };
+};
+
+export const removeWishlist = (id) => {
+  return {
+    type: actionConstants.REMOVE_WISHLIST,
+    payload: { id: id },
+  };
+};
+
+export const getWishList = (wishlist) => {
+  return {
+    type: actionConstants.GET_WISHLIST,
+    payload: { wishlist: wishlist },
   };
 };
