@@ -21,8 +21,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import BadgeUnstyled from "@mui/base/BadgeUnstyled";
 import PaymentsIcon from "@mui/icons-material/Payments";
-import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
@@ -345,7 +345,7 @@ export default function NavBar({ page = 0 }) {
                     onClick={() => dispatch(handleLogout())}
                     disableRipple
                   >
-                    <LogoutIcon color="primary" />
+                    <PowerSettingsNewIcon color="primary" />
                     Logout
                   </MenuItem>
                 </StyledMenu>
@@ -371,7 +371,10 @@ export default function NavBar({ page = 0 }) {
                     )
                   }
                 >
-                  <Link style={{ textDecoration: "none" }} to="/cart">
+                  <Link
+                    style={{ textDecoration: "none", color: "white" }}
+                    to="/cart"
+                  >
                     Cart
                   </Link>
                 </Button>

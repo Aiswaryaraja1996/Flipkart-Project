@@ -797,7 +797,7 @@
       "title": "TITAN",
       "discount": 50,
       "price": 1999,
-      "qty": 1,
+      "qty": 3,
       "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
       "mrp": 999,
       "delDate": "Tue Feb 1",
@@ -817,17 +817,7 @@
       "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
     }
   ],
-  "wishlist": [
-    {
-      "id": 3,
-      "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/j/v/j/c-38044pp03-fastrack-original-imafgyqxzstfyeqg.jpeg?q=50",
-      "discount": 24,
-      "price": 1599,
-      "shortTitle": "38024PP25 Minimalists Analog Watch - For Men",
-      "review": 3,
-      "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
-    }
-  ],
+  "wishlist": [],
   "registeredUsers": [
     {
       "id": "38dc4c1b-9af2-47e9-aab5-005641319ebe",

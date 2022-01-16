@@ -22,6 +22,7 @@ export const actionConstants = {
   GET_WISHLIST: "GET_WISHLIST",
   ADD_WISHLIST: "ADD_WISHLIST",
   REMOVE_WISHLIST: "REMOVE_WISHLIST",
+  EMPTY_WISHLIST: "EMPTY_WISHLIST",
 };
 
 export const registerRequest = () => {
@@ -63,6 +64,13 @@ export const emptyCart = () => {
   return {
     type: actionConstants.EMPTY_CART,
     payload: { cart: [] },
+  };
+};
+
+export const emptyWishlist = () => {
+  return {
+    type: actionConstants.EMPTY_WISHLIST,
+    payload: { wishlist: [] },
   };
 };
 

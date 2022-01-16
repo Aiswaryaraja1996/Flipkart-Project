@@ -37,6 +37,20 @@ export const setUserCart = (payLoad) => (dispatch) => {
     .catch((err) => alert(err.message));
 };
 
+export const setWishlist = (payLoad) => (dispatch) => {
+  const config = {
+    url: "http://localhost:3001/wishlist/",
+    method: "POST",
+    data: payLoad,
+  };
+  return axios(config)
+    .then((res) => {
+      const addWishlistAction = actions.addWishlist(res.data);
+      dispatch(addWishlistAction);
+    })
+    .catch((err) => alert(err.message));
+};
+
 export const handleLogin = (mobile) => (dispatch) => {
   const config = {
     url: `http://localhost:3001/registeredUsers?mobile=${mobile}`,
@@ -47,12 +61,10 @@ export const handleLogin = (mobile) => (dispatch) => {
       if (res.data[0].id) {
         const loginAction = actions.loginUser(res.data[0].id);
 
-        // const setUserCart = actions.setUserCart(res.data[0].cart);
-
         res.data[0].cart?.map((item) => dispatch(setUserCart(item)));
+        res.data[0].wishlist?.map((item) => dispatch(setWishlist(item)));
 
         dispatch(loginAction);
-        // dispatch(setUserCart);
       } else {
         const loginFailureAction = actions.loginFailure();
         dispatch(loginFailureAction);
@@ -140,11 +152,19 @@ const deleteCartData = (id) => {
   return axios(config);
 };
 
+const deleteWishListData = (id) => {
+  const config = {
+    url: `http://localhost:3001/wishlist/${id}`,
+    method: "DELETE",
+  };
+  return axios(config);
+};
+
 export const handleLogout = () => (dispatch) => {
   const id = loadData("token");
   const payLoad = {
     cart: loadData("cart"),
-    wishList: [],
+    wishList: loadData("wishlist"),
   };
 
   const config = {
@@ -156,10 +176,13 @@ export const handleLogout = () => (dispatch) => {
   return axios(config)
     .then((res) => {
       payLoad.cart?.map((item) => deleteCartData(item.id));
+      payLoad.wishList?.map((item) => deleteWishListData(item.id));
       const logoutAction = actions.logout();
       const emptyCart = actions.emptyCart();
+      const emptyWishlist = actions.emptyWishlist();
       dispatch(logoutAction);
       dispatch(emptyCart);
+      dispatch(emptyWishlist);
     })
     .catch((err) => alert(err.message));
 };
@@ -201,6 +224,19 @@ export const removeFromCart = (productId) => (dispatch) => {
     .catch((err) => alert(err.message));
 };
 
+export const removeFromWishlist = (productId) => (dispatch) => {
+  const config = {
+    url: `http://localhost:3001/wishlist/${productId}`,
+    method: "DELETE",
+  };
+  return axios(config)
+    .then((res) => {
+      const removeAction = actions.removeWishlist(productId);
+      dispatch(removeAction);
+    })
+    .catch((err) => alert(err.message));
+};
+
 export const getCart = () => (dispatch) => {
   const config = {
     url: `http://localhost:3001/cart/`,
@@ -221,9 +257,9 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
     id: item.id,
     url: item.url,
     discount: item.discount,
-    price: item.price,
+    price: item.price,    
     shortTitle: item.shortTitle,
-    review: item.customerRatings.length,
+    review: item.customerRatings,
     token: loadData("token"),
   };
   if (inWishlist) {
