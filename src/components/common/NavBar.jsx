@@ -226,75 +226,135 @@ export default function NavBar({ page = 0 }) {
             </Stack>
 
             {/* Search Bar */}
-            <Search>
-              <StyledInputBase
-                placeholder="Search for products, brands and more"
-                inputProps={{ "aria-label": "search" }}
-                onChange={(e) => setQuery(e.target.value)}
-              />
+            {page !== 2 && (
+              <Search>
+                <StyledInputBase
+                  placeholder="Search for products, brands and more"
+                  inputProps={{ "aria-label": "search" }}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
 
-              <SearchIconWrapper>
-                <Link to={`/products/${query}`}>
-                  <SearchIcon sx={{ color: "blue" }} />
-                </Link>
-              </SearchIconWrapper>
-            </Search>
-            <div style={{ width: "150px" }}></div>
+                <SearchIconWrapper>
+                  <Link to={`/products/${query}`}>
+                    <SearchIcon sx={{ color: "blue" }} />
+                  </Link>
+                </SearchIconWrapper>
+              </Search>
+            )}
 
-            <Stack direction="row" spacing={3}>
-              <div>
-                {isAuth ? (
-                  <Button
-                    sx={{
-                      width: "100%",
-                      boxShadow: "none",
-                      "&:hover": {
-                        backgroundColor: "transparent !important",
+            {page !== 2 && <div style={{ width: "150px" }}></div>}
+
+            {page !== 2 && (
+              <Stack direction="row" spacing={3}>
+                <div>
+                  {isAuth ? (
+                    <Button
+                      sx={{
+                        width: "100%",
                         boxShadow: "none",
-                      },
-                    }}
-                    id="demo-customized-button"
-                    aria-controls={open ? "demo-customized-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    variant="contained"
-                    disableElevation
-                    onClick={handleClick}
-                    endIcon={<KeyboardArrowDownIcon />}
-                  >
-                    Account
-                  </Button>
-                ) : (
-                  <LoginButton
-                    id="demo-login-button"
-                    aria-controls={open ? "demo-customized-login" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    variant="contained"
-                    disableElevation
-                    onClick={handleOpenModal}
-                    sx={{
-                      backgroundColor: "white",
-                      color: "blue",
-                      borderRadius: "2px",
-                      padding: "5px 40px",
-                    }}
-                  >
-                    Login
-                  </LoginButton>
-                )}
+                        "&:hover": {
+                          backgroundColor: "transparent !important",
+                          boxShadow: "none",
+                        },
+                      }}
+                      id="demo-customized-button"
+                      aria-controls={open ? "demo-customized-menu" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? "true" : undefined}
+                      variant="contained"
+                      disableElevation
+                      onClick={handleClick}
+                      endIcon={<KeyboardArrowDownIcon />}
+                    >
+                      Account
+                    </Button>
+                  ) : (
+                    <LoginButton
+                      id="demo-login-button"
+                      aria-controls={open ? "demo-customized-login" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? "true" : undefined}
+                      variant="contained"
+                      disableElevation
+                      onClick={handleOpenModal}
+                      sx={{
+                        backgroundColor: "white",
+                        color: "blue",
+                        borderRadius: "2px",
+                        padding: "5px 40px",
+                      }}
+                    >
+                      Login
+                    </LoginButton>
+                  )}
 
-                <Modal
-                  open={openModal}
-                  onClose={handleCloseModal}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Login />
-                </Modal>
-              </div>
+                  <Modal
+                    open={openModal}
+                    onClose={handleCloseModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Login />
+                  </Modal>
+                </div>
 
-              <div>
+                <div>
+                  {page === 0 && (
+                    <Button
+                      sx={{
+                        boxShadow: "none",
+                        "&:hover": {
+                          backgroundColor: "transparent !important",
+                          boxShadow: "none",
+                        },
+                      }}
+                      id="demo-customized-button"
+                      aria-controls={open ? "demo-customized-menu" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? "true" : undefined}
+                      variant="contained"
+                      disableElevation
+                      endIcon={<KeyboardArrowDownIcon />}
+                    >
+                      Menu
+                    </Button>
+                  )}
+
+                  <StyledMenu
+                    id="demo-customized-menu"
+                    MenuListProps={{
+                      "aria-labelledby": "demo-customized-button",
+                    }}
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClick={handleClose}
+                  >
+                    <MenuItem disableRipple>
+                      <AccountCircleIcon color="primary" />
+                      My Profile
+                    </MenuItem>
+                    <MenuItem disableRipple>
+                      <PaymentsIcon color="primary" />
+                      Orders
+                    </MenuItem>
+                    <Divider sx={{ my: 0.5 }} />
+                    <Link to="/wishlist">
+                      <MenuItem disableRipple>
+                        {" "}
+                        <FavoriteIcon color="primary" />
+                        <span style={{ color: "black" }}>Wishlist</span>
+                      </MenuItem>
+                    </Link>
+                    <MenuItem
+                      onClick={() => dispatch(handleLogout())}
+                      disableRipple
+                    >
+                      <PowerSettingsNewIcon color="primary" />
+                      Logout
+                    </MenuItem>
+                  </StyledMenu>
+                </div>
+
                 {page === 0 && (
                   <Button
                     sx={{
@@ -304,82 +364,27 @@ export default function NavBar({ page = 0 }) {
                         boxShadow: "none",
                       },
                     }}
-                    id="demo-customized-button"
-                    aria-controls={open ? "demo-customized-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
                     variant="contained"
-                    disableElevation
-                    endIcon={<KeyboardArrowDownIcon />}
+                    startIcon={
+                      cart.length === 0 ? (
+                        <ShoppingCartIcon sx={{ color: "white" }} />
+                      ) : (
+                        <StyledBadge badgeContent={cart.length}>
+                          <ShoppingCartIcon sx={{ color: "white" }} />
+                        </StyledBadge>
+                      )
+                    }
                   >
-                    Menu
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
+                      to="/cart"
+                    >
+                      Cart
+                    </Link>
                   </Button>
                 )}
-
-                <StyledMenu
-                  id="demo-customized-menu"
-                  MenuListProps={{
-                    "aria-labelledby": "demo-customized-button",
-                  }}
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClick={handleClose}
-                >
-                  <MenuItem disableRipple>
-                    <AccountCircleIcon color="primary" />
-                    My Profile
-                  </MenuItem>
-                  <MenuItem disableRipple>
-                    <PaymentsIcon color="primary" />
-                    Orders
-                  </MenuItem>
-                  <Divider sx={{ my: 0.5 }} />
-                  <Link to="/wishlist">
-                    <MenuItem disableRipple>
-                      {" "}
-                      <FavoriteIcon color="primary" />
-                      <span style={{ color: "black" }}>Wishlist</span>
-                    </MenuItem>
-                  </Link>
-                  <MenuItem
-                    onClick={() => dispatch(handleLogout())}
-                    disableRipple
-                  >
-                    <PowerSettingsNewIcon color="primary" />
-                    Logout
-                  </MenuItem>
-                </StyledMenu>
-              </div>
-
-              {page === 0 && (
-                <Button
-                  sx={{
-                    boxShadow: "none",
-                    "&:hover": {
-                      backgroundColor: "transparent !important",
-                      boxShadow: "none",
-                    },
-                  }}
-                  variant="contained"
-                  startIcon={
-                    cart.length === 0 ? (
-                      <ShoppingCartIcon sx={{ color: "white" }} />
-                    ) : (
-                      <StyledBadge badgeContent={cart.length}>
-                        <ShoppingCartIcon sx={{ color: "white" }} />
-                      </StyledBadge>
-                    )
-                  }
-                >
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to="/cart"
-                  >
-                    Cart
-                  </Link>
-                </Button>
-              )}
-            </Stack>
+              </Stack>
+            )}
           </Stack>
         </Toolbar>
       </AppBar>

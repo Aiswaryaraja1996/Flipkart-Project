@@ -12,10 +12,11 @@ import { useDispatch } from "react-redux";
 import { getCart } from "../redux/Api";
 import { saveData } from "../utils/localStorage";
 
+import { Link } from "react-router-dom";
+
 export const CartLayoutPage = () => {
   const cartItems = useSelector((state) => state.product.cart);
   const dispatch = useDispatch();
-  
 
   const { cartDetails } = cartItems;
 
@@ -27,7 +28,7 @@ export const CartLayoutPage = () => {
   }, [cartDetails]);
   return (
     <div style={{ background: "#F1F3F6", height: "100vh" }}>
-      <NavBar page={1}/>
+      <NavBar page={1} />
 
       {cartItems.length > 0 ? (
         <div
@@ -129,20 +130,22 @@ export const CartLayoutPage = () => {
                   borderTop: "1px solid #f0f0f0",
                 }}
               >
-                <Button
-                  variant="contained"
-                  sx={{
-                    display: "flex",
-                    marginLeft: "auto",
-                    background: "#fb641b",
-                    color: "#fff",
-                    borderRadius: 2,
-                    width: 250,
-                    height: 51,
-                  }}
-                >
-                  Place Order
-                </Button>
+                <Link to="/payment">
+                  <Button
+                    variant="contained"
+                    sx={{
+                      display: "flex",
+                      marginLeft: "auto",
+                      background: "#fb641b",
+                      color: "#fff",
+                      borderRadius: 2,
+                      width: 250,
+                      height: 51,
+                    }}
+                  >
+                    Place Order
+                  </Button>
+                </Link>
               </Box>
             </Grid>
             <Grid item sx={{ width: "30%" }}>
