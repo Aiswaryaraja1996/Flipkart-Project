@@ -56,7 +56,7 @@ export const loginFailure = () => {
 export const logout = () => {
   return {
     type: actionConstants.LOGOUT,
-    payload: { isAuth: false, isRegister: 2 },
+    payload: { isAuth: false, isRegister: 0 },
   };
 };
 

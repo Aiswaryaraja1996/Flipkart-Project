@@ -4,18 +4,17 @@ import Filter from "../components/products/Filter";
 import { Grid, Typography, Pagination } from "@mui/material/";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import Footer from "../components/common/Footer";
-// import Pagination from "../components/products/Pagination";
 
 import ProductCard from "../components/products/ProductCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/Api";
+
+import { saveData } from "../utils/localStorage";
 
 function a11yProps(index) {
   return {
@@ -28,9 +27,34 @@ export default function Products() {
   const { query } = useParams();
   const dispatch = useDispatch();
 
+  const wishlist = useSelector((state) => state.product.wishlist);
+
   const [rule, setRule] = useState("");
   const [value, setValue] = useState(0);
   const [page, setPage] = useState(1);
+
+  const [ratings, setRatings] = useState(0);
+  const [idealFor, setIdealFor] = useState("all");
+  const [brand, setBrand] = useState("all");
+
+  useEffect(() => {
+    localStorage.removeItem("wishlist");
+    saveData("wishlist", wishlist);
+  }, [wishlist]);
+
+  // useEffect(() => dispatch(getProducts(query)), [page]);
+
+  const handleRatings = (n) => {
+    setRatings(n);
+  };
+
+  const handleIdealfor = (n) => {
+    setIdealFor(n);
+  };
+
+  const handleBrand = (n) => {
+    setBrand(n);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -46,9 +70,6 @@ export default function Products() {
   const handleSort = (n) => {
     setRule(n);
   };
-
-  console.log(product);
-  useEffect(() => dispatch(getProducts(query)), [page]);
 
   const breadcrumbs = [
     <Link to="/" style={{ fontSize: "12px", color: "#878787" }}>
@@ -82,7 +103,11 @@ export default function Products() {
               flexWrap: "initial",
             }}
           >
-            <Filter />
+            <Filter
+              handleRatings={handleRatings}
+              handleIdealfor={handleIdealfor}
+              handleBrand={handleBrand}
+            />
           </div>
           <div
             style={{
@@ -234,7 +259,10 @@ export default function Products() {
                   justifyContent="space-between"
                 >
                   {product
-                    ?.sort((a, b) => {
+                    ?.filter(({ avgRate }) => {
+                      return avgRate > ratings;
+                    })
+                    .sort((a, b) => {
                       if (rule === null) {
                         return 0;
                       }

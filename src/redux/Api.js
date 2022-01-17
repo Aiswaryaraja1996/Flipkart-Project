@@ -144,7 +144,7 @@ export const handleAddCart =
       .catch((err) => alert(err.message));
   };
 
-const deleteCartData = (id) => {
+const deleteCartData = (id) => (dispatch) => {
   const config = {
     url: `http://localhost:3001/cart/${id}`,
     method: "DELETE",
@@ -152,7 +152,7 @@ const deleteCartData = (id) => {
   return axios(config);
 };
 
-const deleteWishListData = (id) => {
+const deleteWishListData = (id) => (dispatch) => {
   const config = {
     url: `http://localhost:3001/wishlist/${id}`,
     method: "DELETE",
@@ -164,7 +164,7 @@ export const handleLogout = () => (dispatch) => {
   const id = loadData("token");
   const payLoad = {
     cart: loadData("cart"),
-    wishList: loadData("wishlist"),
+    wishlist: loadData("wishlist"),
   };
 
   const config = {
@@ -175,11 +175,12 @@ export const handleLogout = () => (dispatch) => {
 
   return axios(config)
     .then((res) => {
-      payLoad.cart?.map((item) => deleteCartData(item.id));
-      payLoad.wishList?.map((item) => deleteWishListData(item.id));
+      payLoad.cart?.map((item) => dispatch(deleteCartData(item.id)));
+      payLoad.wishlist?.map((item) => dispatch(deleteWishListData(item.id)));
       const logoutAction = actions.logout();
       const emptyCart = actions.emptyCart();
       const emptyWishlist = actions.emptyWishlist();
+
       dispatch(logoutAction);
       dispatch(emptyCart);
       dispatch(emptyWishlist);
@@ -257,7 +258,7 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
     id: item.id,
     url: item.url,
     discount: item.discount,
-    price: item.price,    
+    price: item.price,
     shortTitle: item.shortTitle,
     review: item.customerRatings,
     token: loadData("token"),
