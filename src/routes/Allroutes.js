@@ -4,6 +4,7 @@ import { CartLayoutPage } from "../pages/CartLayoutPage";
 import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
 import Wishlist from "../pages/Wishlist";
+import Payment from "../pages/Payment"
 
 export default function Allroutes() {
   return (
@@ -22,6 +23,9 @@ export default function Allroutes() {
       </Route>
       <Route exact path="/wishlist">
         <Wishlist />
+      </Route>
+      <Route exact path="/payment">
+        <Payment/>
       </Route>
     </Switch>
   );

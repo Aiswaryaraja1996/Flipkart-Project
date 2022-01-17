@@ -1,7 +1,7 @@
 import { Box, Typography, Paper } from "@mui/material";
 import { useState, useEffect } from "react";
 
-export default function TotalCard({ cartItems }) {
+export default function TotalCard({ cartItems, coupon = 0 }) {
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
 
@@ -72,6 +72,21 @@ export default function TotalCard({ cartItems }) {
         >
           Delivery Charges<span style={{ float: "right" }}>₹40</span>
         </Typography>
+        {coupon == 1 && (
+          <Typography
+            sx={{
+              display: "flex",
+              margin: "20px 0 !important",
+              alignItems: "center",
+              color: "#388e3c",
+              fontSize: "14px",
+              fontWeight: 500,
+              justifyContent: "space-between",
+            }}
+          >
+            Coupon Applied for 10% discount
+          </Typography>
+        )}
         <Typography
           sx={{
             fontSize: "px",
@@ -83,7 +98,16 @@ export default function TotalCard({ cartItems }) {
         >
           Total Amount
           <span style={{ float: "right" }}>
-            ₹{Number(price) - Number(discount) + 40}
+            {coupon === 1 ? (
+              <span>
+              ₹{Math.ceil(Number(price) -
+                  Number(discount) -
+                  (Number(price) - Number(discount)) * 0.1 +
+                  40)}
+              </span>
+            ) : (
+              <span>₹{Number(price) - Number(discount)}</span>
+            )}
           </span>
         </Typography>
         <Typography
