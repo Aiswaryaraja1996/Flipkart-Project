@@ -5,8 +5,8 @@
       "category": "watches",
       "title": "TITAN",
       "subCategory": "Wrist Watches",
-      "Brand": "TITAN",
-      "Ideal for": [
+      "brand": "TITAN",
+      "idealFor": [
         "Women",
         "Girls"
       ],
@@ -55,8 +55,8 @@
       "title": "FOSSIL",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FOSSIL",
-      "Ideal for": [
+      "brand": "FOSSIL",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "1170-BL-BR Unique New Day & Date Analog Watch - For Men",
@@ -104,8 +104,8 @@
       "title": "FASTTRACK",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FASTTRACK",
-      "Ideal for": [
+      "brand": "FASTTRACK",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "38024PP25 Minimalists Analog Watch - For Men",
@@ -153,8 +153,8 @@
       "title": "CASIO",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "CASIO",
-      "Ideal for": [
+      "brand": "CASIO",
+      "idealFor": [
         "Women",
         "Girls"
       ],
@@ -203,8 +203,8 @@
       "title": "FOSSIL",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FOSSIL",
-      "Ideal for": [
+      "brand": "FOSSIL",
+      "idealFor": [
         "Women",
         "Girls"
       ],
@@ -253,8 +253,8 @@
       "title": "CASIO",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "CASIO",
-      "Ideal for": [
+      "brand": "CASIO",
+      "idealFor": [
         "Men",
         "Boys"
       ],
@@ -303,8 +303,8 @@
       "title": "TITAN",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "TITAN",
-      "Ideal for": [
+      "brand": "TITAN",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "NN9322SL03 Octane Analog Watch - For Men",
@@ -352,8 +352,8 @@
       "category": "watches",
       "title": "TOMMY HILFIGER ",
       "subCategory": "Wrist Watches",
-      "Brand": "TOMMY HILFIGER ",
-      "Ideal for": [
+      "brand": "TOMMY HILFIGER ",
+      "idealFor": [
         "Women",
         "Girls"
       ],
@@ -402,8 +402,8 @@
       "title": "FOSSIL",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FOSSIL",
-      "Ideal for": [
+      "brand": "FOSSIL",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "1170-BL-BR Unique New Day & Date Analog Watch - For Men",
@@ -451,8 +451,8 @@
       "title": "FASTTRACK",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FASTTRACK",
-      "Ideal for": [
+      "brand": "FASTTRACK",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "38024PP25 Minimalists Analog Watch - For Men",
@@ -500,8 +500,8 @@
       "title": "TOMMY HILFIGER",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "TOMMY HILFIGER ",
-      "Ideal for": [
+      "brand": "TOMMY HILFIGER ",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "TH1791604 Analog Watch - For Men",
@@ -549,8 +549,8 @@
       "title": "FOSSIL",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FOSSIL",
-      "Ideal for": [
+      "brand": "FOSSIL",
+      "idealFor": [
         "Women",
         "Girls"
       ],
@@ -599,8 +599,8 @@
       "title": "TOMMY HILFIGER ",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "TOMMY HILFIGER ",
-      "Ideal for": [
+      "brand": "TOMMY HILFIGER ",
+      "idealFor": [
         "Women"
       ],
       "shortTitle": "TH1782154 Analog Watch - For Women",
@@ -648,8 +648,8 @@
       "title": "TITAN",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "TITAN",
-      "Ideal for": [
+      "brand": "TITAN",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "NN9322SL03 Octane Analog Watch - For Men",
@@ -697,8 +697,8 @@
       "title": "FASTRACK",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "FASTRACK",
-      "Ideal for": [
+      "brand": "FASTRACK",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "38044PP02 Trendies Analog Watch - For Men",
@@ -746,8 +746,8 @@
       "title": "CASIO",
       "category": "watches",
       "subCategory": "Wrist Watches",
-      "Brand": "CASIO",
-      "Ideal for": [
+      "brand": "CASIO",
+      "idealFor": [
         "Men"
       ],
       "shortTitle": "G987 G-Shock ( GA-2100-1A1DR ) Analog-Digital Watch - For Men",
@@ -791,60 +791,15 @@
       ]
     }
   ],
-  "cart": [
-    {
-      "id": 1,
-      "title": "TITAN",
-      "discount": 50,
-      "price": 1999,
-      "qty": 3,
-      "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
-      "mrp": 999,
-      "delDate": "Tue Feb 1",
-      "delCharge": "Free",
-      "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
-    },
-    {
-      "id": 2,
-      "title": "FOSSIL",
-      "discount": 31,
-      "price": 1699,
-      "qty": 1,
-      "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
-      "mrp": 1172,
-      "delDate": "Tue Feb 1",
-      "delCharge": "Free",
-      "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
-    }
-  ],
+  "cart": [],
   "wishlist": [],
   "registeredUsers": [
     {
-      "id": "38dc4c1b-9af2-47e9-aab5-005641319ebe",
+      "id": "70afc6ce-247d-445a-b11a-8c8dfecda565",
       "mobile": "9562152083",
       "password": "1234",
-      "cart": [
-        {
-          "id": 1,
-          "title": "TITAN",
-          "discount": 50,
-          "price": 1999,
-          "qty": 3,
-          "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
-          "mrp": 999,
-          "delDate": "Tue Feb 1",
-          "delCharge": "Free",
-          "token": "38dc4c1b-9af2-47e9-aab5-005641319ebe"
-        }
-      ],
-      "wishList": []
-    },
-    {
-      "id": "d8d5f6f8-2d5d-4d4a-9db6-8329d00b82b0",
-      "mobile": "9048934825",
-      "password": "1234",
-      "cart": null,
-      "wishList": []
+      "cart": [],
+      "wishlist": []
     }
   ]
 }

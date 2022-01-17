@@ -33,11 +33,11 @@ const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() => dispatch(getSingleProduct(id)), []);
-
   const product = useSelector((state) => state.product.product);
 
   const cart = useSelector((state) => state.product.cart);
+
+  useEffect(() => dispatch(getSingleProduct(id)), []);
 
   var inCart = cart?.find((item) => {
     return item.id === product.id;
@@ -138,7 +138,7 @@ const ProductDetail = () => {
                           }}
                         >
                           <ShoppingCartIcon sx={{ color: "#FFF" }} />
-                          <div>Go to Cart</div>
+                          <div style={{ color: "white" }}>Go to Cart</div>
                         </div>
                       </Link>
                     </Button>

@@ -6,16 +6,24 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-function valuetext(value) {
-  return `${value}°C`;
-}
-
-export default function Filter() {
+export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
   const [value, setValue] = useState([20, 37]);
 
   const handleChange = (event, newValue) => {
+    console.log(value, newValue);
     setValue(newValue);
   };
+
+  const handleMin = (e) => {
+    var val = document.getElementById("max").value;
+    setValue([e.target.value, val]);
+  };
+
+  const handleMax = (e) => {
+    var val = document.getElementById("min").value;
+    setValue([val, e.target.value]);
+  };
+
   return (
     <Stack
       sx={{
@@ -94,11 +102,9 @@ export default function Filter() {
             <span>Price</span>
           </div>
           <Slider
-            getAriaLabel={() => "Temperature range"}
             value={value}
             onChange={handleChange}
             valueLabelDisplay="auto"
-            getAriaValueText={valuetext}
             step={1000}
             marks
             min={0}
@@ -117,6 +123,7 @@ export default function Filter() {
           >
             <div style={{ display: "inline-block", flexGrow: 1 }}>
               <select
+                id="min"
                 style={{
                   width: "100%",
                   border: "1px solid #e0e0e0",
@@ -132,27 +139,39 @@ export default function Filter() {
                   padding: "0 5px",
                   outline: "none",
                 }}
+                onChange={handleMin}
               >
-                <option value="Min" class="_3AsjWR">
-                  Min
-                </option>
-                <option value="500" class="_3AsjWR">
-                  ₹500
-                </option>
-                <option value="1000" class="_3AsjWR">
+                <option value="Min">Min</option>
+
+                <option
+                  value="1000"
+                  selected={value[0] === 1000 ? true : false}
+                >
                   ₹1000
                 </option>
-                <option value="2000" class="_3AsjWR">
+                <option
+                  value="2000"
+                  selected={value[0] === 2000 ? true : false}
+                >
                   ₹2000
                 </option>
-                <option value="3000" class="_3AsjWR">
+                <option
+                  value="3000"
+                  selected={value[0] === 3000 ? true : false}
+                >
                   ₹3000
                 </option>
-                <option value="5000" class="_3AsjWR">
-                  ₹5000
+                <option
+                  value="4000"
+                  selected={value[0] === 4000 ? true : false}
+                >
+                  ₹4000
                 </option>
-                <option value="10000" class="_3AsjWR">
-                  ₹10000
+                <option
+                  value="5000"
+                  selected={value[0] === 5000 ? true : false}
+                >
+                  ₹5000
                 </option>
               </select>
             </div>
@@ -179,6 +198,7 @@ export default function Filter() {
               }}
             >
               <select
+                id="max"
                 style={{
                   width: "100%",
                   border: "1px solid #e0e0e0",
@@ -194,27 +214,40 @@ export default function Filter() {
                   padding: "0 5px",
                   outline: "none",
                 }}
+                onChange={handleMax}
               >
-                <option value="500" class="_3AsjWR">
-                  ₹500
-                </option>
-                <option value="1000" class="_3AsjWR">
+                <option
+                  value="1000"
+                  selected={value[1] === 1000 ? true : false}
+                >
                   ₹1000
                 </option>
-                <option value="2000" class="_3AsjWR">
+                <option
+                  value="2000"
+                  selected={value[1] === 2000 ? true : false}
+                >
                   ₹2000
                 </option>
-                <option value="3000" class="_3AsjWR">
+                <option
+                  value="3000"
+                  selected={value[1] === 3000 ? true : false}
+                >
                   ₹3000
                 </option>
-                <option value="5000" class="_3AsjWR">
+                <option
+                  value="4000"
+                  selected={value[1] === 4000 ? true : false}
+                >
+                  ₹4000
+                </option>
+                <option
+                  value="5000"
+                  selected={value[1] === 5000 ? true : false}
+                >
                   ₹5000
                 </option>
-                <option value="10000" class="_3AsjWR">
-                  ₹10000
-                </option>
-                <option value="Max" class="_3AsjWR">
-                  ₹10000+
+                <option value="Max" selected={value[1] > 5000 ? true : false}>
+                  ₹5000+
                 </option>
               </select>
             </div>
@@ -427,6 +460,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleIdealfor("Women")}
                 />
               }
               label="Women"
@@ -449,6 +483,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleIdealfor("Men")}
                 />
               }
               label="Men"
@@ -471,6 +506,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleIdealfor("Boys")}
                 />
               }
               label="Boys"
@@ -493,6 +529,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleIdealfor("Girls")}
                 />
               }
               label="Girls"
@@ -538,6 +575,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleRatings(4)}
                 />
               }
               label="4 & above"
@@ -560,6 +598,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleRatings(3)}
                 />
               }
               label="3 & above"
@@ -582,6 +621,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleRatings(2)}
                 />
               }
               label="2 & above"
@@ -604,6 +644,7 @@ export default function Filter() {
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
                   }}
+                  onClick={() => handleRatings(1)}
                 />
               }
               label="1 & above"

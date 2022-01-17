@@ -27,5 +27,5 @@ const Container = styled("div")(({ theme }) => ({
 export default function Login() {
   const isRegister = useSelector((state) => state.auth.isRegister);
 
-  return <Container>{isRegister === 0 || isRegister === 2 ? <RegisteredUser /> : <NewUser />}</Container>;
+  return <Container>{isRegister === 0 || isRegister === 3 ? <RegisteredUser /> : <NewUser />}</Container>;
 }
