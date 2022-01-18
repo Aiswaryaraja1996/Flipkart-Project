@@ -1,16 +1,20 @@
 import axios from "axios";
 import * as actions from "./Action";
 import { v4 as uuidv4 } from "uuid";
-import { loadData, saveData } from "../utils/localStorage";
+import { loadData} from "../utils/localStorage";
+
+//To Register a new User
 
 export const handleRegister = (login) => (dispatch) => {
   const payLoad = {
     id: uuidv4(),
     mobile: login.mobile,
     password: login.password,
+    cart: [],
+    wishlist: [],
   };
   const config = {
-    url: "http://localhost:3001/registeredUsers/",
+    url: "https://product-mock-server.herokuapp.com/registeredUsers/",
     method: "POST",
     data: payLoad,
   };
@@ -23,9 +27,11 @@ export const handleRegister = (login) => (dispatch) => {
     .catch((err) => {});
 };
 
+//To set the cart and wishlist on Login
+
 export const setUserCart = (payLoad) => (dispatch) => {
   const config = {
-    url: "http://localhost:3001/cart/",
+    url: "https://product-mock-server.herokuapp.com/cart/",
     method: "POST",
     data: payLoad,
   };
@@ -34,12 +40,12 @@ export const setUserCart = (payLoad) => (dispatch) => {
       const addCartAction = actions.addCart(res.data);
       dispatch(addCartAction);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
 
 export const setWishlist = (payLoad) => (dispatch) => {
   const config = {
-    url: "http://localhost:3001/wishlist/",
+    url: "https://product-mock-server.herokuapp.com/wishlist/",
     method: "POST",
     data: payLoad,
   };
@@ -48,12 +54,14 @@ export const setWishlist = (payLoad) => (dispatch) => {
       const addWishlistAction = actions.addWishlist(res.data);
       dispatch(addWishlistAction);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
+
+
 
 export const handleLogin = (mobile) => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/registeredUsers?mobile=${mobile}`,
+    url: `https://product-mock-server.herokuapp.com/registeredUsers?mobile=${mobile}`,
     method: "GET",
   };
   return axios(config)
@@ -83,7 +91,7 @@ export const getProducts =
     dispatch(requestAction);
 
     const config = {
-      url: `http://localhost:3001/products?category=${query}`,
+      url: `https://product-mock-server.herokuapp.com/products?category=${query}`,
       method: "GET",
     };
     return axios(config)
@@ -102,7 +110,7 @@ export const getSingleProduct = (id) => (dispatch) => {
   dispatch(requestAction);
 
   const config = {
-    url: `http://localhost:3001/products/${id}`,
+    url: `https://product-mock-server.herokuapp.com/products/${id}`,
     method: "GET",
   };
   return axios(config)
@@ -132,7 +140,7 @@ export const handleAddCart =
     };
 
     const config = {
-      url: "http://localhost:3001/cart/",
+      url: "https://product-mock-server.herokuapp.com/cart/",
       method: "POST",
       data: payLoad,
     };
@@ -146,7 +154,7 @@ export const handleAddCart =
 
 export const deleteCartData = (id) => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/cart/${id}`,
+    url: `https://product-mock-server.herokuapp.com/cart/${id}`,
     method: "DELETE",
   };
   return axios(config);
@@ -154,7 +162,7 @@ export const deleteCartData = (id) => (dispatch) => {
 
 export const deleteWishListData = (id) => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/wishlist/${id}`,
+    url: `https://product-mock-server.herokuapp.com/wishlist/${id}`,
     method: "DELETE",
   };
   return axios(config);
@@ -162,21 +170,25 @@ export const deleteWishListData = (id) => (dispatch) => {
 
 export const handleLogout = () => (dispatch) => {
   const id = loadData("token");
+
   const payLoad = {
     cart: loadData("cart"),
     wishlist: loadData("wishlist"),
   };
 
   const config = {
-    url: `http://localhost:3001/registeredUsers/${id}`,
+    url: `https://product-mock-server.herokuapp.com/registeredUsers/${id}`,
     method: "PATCH",
     data: payLoad,
   };
 
   return axios(config)
     .then((res) => {
+      console.log(payLoad.cart, payLoad.wishlist);
+
       payLoad.cart?.map((item) => dispatch(deleteCartData(item.id)));
       payLoad.wishlist?.map((item) => dispatch(deleteWishListData(item.id)));
+
       const logoutAction = actions.logout();
       const emptyCart = actions.emptyCart();
       const emptyWishlist = actions.emptyWishlist();
@@ -193,7 +205,7 @@ export const handleCartItemChange = (id, qty, count) => (dispatch) => {
     qty: qty + count,
   };
   const config = {
-    url: `http://localhost:3001/cart/${id}`,
+    url: `https://product-mock-server.herokuapp.com/cart/${id}`,
     method: "PATCH",
     data: payLoad,
   };
@@ -214,7 +226,7 @@ export const handleCartItemChange = (id, qty, count) => (dispatch) => {
 
 export const removeFromCart = (productId) => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/cart/${productId}`,
+    url: `https://product-mock-server.herokuapp.com/cart/${productId}`,
     method: "DELETE",
   };
   return axios(config)
@@ -227,7 +239,7 @@ export const removeFromCart = (productId) => (dispatch) => {
 
 export const removeFromWishlist = (productId) => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/wishlist/${productId}`,
+    url: `https://product-mock-server.herokuapp.com/wishlist/${productId}`,
     method: "DELETE",
   };
   return axios(config)
@@ -240,7 +252,7 @@ export const removeFromWishlist = (productId) => (dispatch) => {
 
 export const getCart = () => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/cart/`,
+    url: `https://product-mock-server.herokuapp.com/cart/`,
     method: "GET",
   };
 
@@ -265,7 +277,7 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
   };
   if (inWishlist) {
     const config = {
-      url: `http://localhost:3001/wishlist/`,
+      url: `https://product-mock-server.herokuapp.com/wishlist/`,
       method: "POST",
       data: payLoad,
     };
@@ -277,7 +289,7 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
       .catch((err) => alert(err.message));
   } else {
     const config = {
-      url: `http://localhost:3001/wishlist/${item.id}`,
+      url: `https://product-mock-server.herokuapp.com/wishlist/${item.id}`,
       method: "DELETE",
     };
     return axios(config)
@@ -291,7 +303,7 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
 
 export const getWishList = () => (dispatch) => {
   const config = {
-    url: `http://localhost:3001/wishlist/`,
+    url: `https://product-mock-server.herokuapp.com/wishlist/`,
     method: "GET",
   };
   return axios(config)

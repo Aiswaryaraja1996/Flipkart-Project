@@ -32,7 +32,7 @@ export default function ProductCard({ item }) {
       item
       sx={{
         width: "23%",
-        margin: "0 8px",
+        margin: "0 12.25px",
         maxWidth: "100%",
         padding: "0 !important",
         transition: "box-shadow .2s ease-in-out",

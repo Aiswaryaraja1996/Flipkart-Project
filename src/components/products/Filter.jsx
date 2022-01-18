@@ -6,22 +6,25 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
-  const [value, setValue] = useState([20, 37]);
+export default function Filter({ handleRatings, handleIdealfor, handleBrand,handlePrice }) {
+  const [value, setValue] = useState([0, 10000]);
 
   const handleChange = (event, newValue) => {
     console.log(value, newValue);
     setValue(newValue);
+    handlePrice(value);
   };
 
   const handleMin = (e) => {
     var val = document.getElementById("max").value;
     setValue([e.target.value, val]);
+    handlePrice(value);
   };
 
   const handleMax = (e) => {
     var val = document.getElementById("min").value;
     setValue([val, e.target.value]);
+    handlePrice(value);
   };
 
   return (
@@ -294,7 +297,7 @@ export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
                   fontSize: "14px",
                   letterSpacing: 0,
                 },
-              }}
+              }} onClick={() => handleBrand("Casio")}
             />
             <FormControlLabel
               control={
@@ -316,7 +319,7 @@ export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
                   fontSize: "14px",
                   letterSpacing: 0,
                 },
-              }}
+              }} onClick={() => handleBrand("Fossil")}
             />
             <FormControlLabel
               control={
@@ -338,7 +341,7 @@ export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
                   fontSize: "14px",
                   letterSpacing: 0,
                 },
-              }}
+              }} onClick={() => handleBrand("Titan")}
             />
             <FormControlLabel
               control={
@@ -360,7 +363,7 @@ export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
                   fontSize: "14px",
                   letterSpacing: 0,
                 },
-              }}
+              }} onClick={() => handleBrand("Fastrack")}
             />
             <FormControlLabel
               control={
@@ -370,7 +373,7 @@ export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
                     marginRight: "11px",
                     padding: 0,
                     "& .MuiSvgIcon-root": { fontSize: "18px" },
-                  }}
+                  }} 
                 />
               }
               label="Allen Solly"
@@ -382,7 +385,7 @@ export default function Filter({ handleRatings, handleIdealfor, handleBrand }) {
                   fontSize: "14px",
                   letterSpacing: 0,
                 },
-              }}
+              }}  onClick={() => handleBrand("Allen Solly")}
             />
           </FormGroup>
         </section>

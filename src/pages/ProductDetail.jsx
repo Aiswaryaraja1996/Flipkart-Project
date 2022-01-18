@@ -173,6 +173,7 @@ const ProductDetail = () => {
                       Add to Cart
                     </Button>
                   )}
+
                   <Button
                     sx={{
                       background: "#fb641b",
@@ -186,7 +187,18 @@ const ProductDetail = () => {
                     }}
                     variant="contained"
                   >
-                    <FlashOnIcon sx={{ color: "#FFF" }} /> Buy Now
+                    <Link to="/payment">
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <FlashOnIcon sx={{ color: "#FFF" }} />{" "}
+                        <div style={{ color: "#FFF" }}>Buy Now</div>
+                      </div>
+                    </Link>
                   </Button>
                 </div>
               </Box>

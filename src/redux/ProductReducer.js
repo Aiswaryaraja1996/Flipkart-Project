@@ -37,10 +37,24 @@ export default function ProductReducer(state = initialState, action) {
     case actionConstants.GET_CART:
       return { ...state, cart: action.payload.cart };
     case actionConstants.ADD_CART:
-      saveData("cart", action.payload);
-      return { ...state, cart: [...state.cart, action.payload] };
+      if (Array.isArray(action.payload.cart)) {
+        saveData("cart", action.payload.cart);
+      } else {
+        var res = [];
+        res = [...res, action.payload.cart];
+        saveData("cart", res);
+      }
+
+      return { ...state, cart: [...state.cart, action.payload.cart] };
     case actionConstants.ADD_WISHLIST:
-      saveData("wishlist", action.payload.wishlist);
+      if (Array.isArray(action.payload.wishlist)) {
+        saveData("wishlist", action.payload.wishlist);
+      } else {
+        var res2 = [];
+        res2 = [...res2, action.payload.wishlist];
+        saveData("wishlist", res2);
+      }
+
       return {
         ...state,
         wishlist: [...state.wishlist, action.payload.wishlist],

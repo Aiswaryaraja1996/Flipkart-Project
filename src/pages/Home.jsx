@@ -24,7 +24,7 @@ const Home = () => {
           <Carousel />
         </div>
 
-        <MiddleSlide products={dealData} />
+        <MiddleSlide products={dealData} key={1}/>
 
         <div style={{ marginTop: "10px" }}>
           <Slide
@@ -41,6 +41,7 @@ const Home = () => {
             title="Suggested Items"
             timer={false}
             multi={true}
+            key={1}
           />
         </div>
       </Box>
