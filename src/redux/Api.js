@@ -144,7 +144,7 @@ export const handleAddCart =
       .catch((err) => alert(err.message));
   };
 
-const deleteCartData = (id) => (dispatch) => {
+export const deleteCartData = (id) => (dispatch) => {
   const config = {
     url: `http://localhost:3001/cart/${id}`,
     method: "DELETE",
@@ -152,7 +152,7 @@ const deleteCartData = (id) => (dispatch) => {
   return axios(config);
 };
 
-const deleteWishListData = (id) => (dispatch) => {
+export const deleteWishListData = (id) => (dispatch) => {
   const config = {
     url: `http://localhost:3001/wishlist/${id}`,
     method: "DELETE",

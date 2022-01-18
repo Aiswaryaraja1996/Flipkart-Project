@@ -791,32 +791,7 @@
       ]
     }
   ],
-  "cart": [
-    {
-      "id": 1,
-      "title": "TITAN",
-      "discount": 50,
-      "price": 1999,
-      "qty": 1,
-      "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
-      "mrp": 999,
-      "delDate": "Tue Feb 1",
-      "delCharge": "Free",
-      "token": "70afc6ce-247d-445a-b11a-8c8dfecda565"
-    },
-    {
-      "id": 2,
-      "title": "FOSSIL",
-      "discount": 31,
-      "price": 1699,
-      "qty": 1,
-      "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
-      "mrp": 1172,
-      "delDate": "Tue Feb 1",
-      "delCharge": "Free",
-      "token": "70afc6ce-247d-445a-b11a-8c8dfecda565"
-    }
-  ],
+  "cart": [],
   "wishlist": [],
   "registeredUsers": [
     {
@@ -824,7 +799,39 @@
       "mobile": "9562152083",
       "password": "1234",
       "cart": [],
-      "wishlist": []
+      "wishlist": [
+        {
+          "id": 1,
+          "url": "https://rukminim1.flixcart.com/image/880/1056/kg2l47k0-0/watch/g/b/z/2644km02-titan-original-imafwe3yhuzkt5vz.jpeg?q=50",
+          "discount": 50,
+          "price": 1999,
+          "shortTitle": "New Arrival Stylish Attractive Ethnic Blue Bracelet Look Analog Watch for Girls Analog Watch - For Women",
+          "review": [
+            {
+              "ratings": "4.1",
+              "review": "Very nice product it is fabulous I really love it thank you flipcart",
+              "location": "Kerala",
+              "like": 100,
+              "dislike": 10
+            },
+            {
+              "ratings": "4.1",
+              "review": "Very nice product it is fabulous I really love it thank you flipcart",
+              "location": "Kerala",
+              "like": 100,
+              "dislike": 10
+            },
+            {
+              "ratings": "4.1",
+              "review": "Very nice product it is fabulous I really love it thank you flipcart",
+              "location": "Kerala",
+              "like": 100,
+              "dislike": 10
+            }
+          ],
+          "token": "70afc6ce-247d-445a-b11a-8c8dfecda565"
+        }
+      ]
     }
   ]
 }
