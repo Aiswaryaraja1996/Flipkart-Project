@@ -149,7 +149,7 @@ export const handleAddCart =
         const addCartAction = actions.addCart(res.data);
         dispatch(addCartAction);
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err.message));
   };
 
 export const deleteCartData = (id) => (dispatch) => {
@@ -197,7 +197,7 @@ export const handleLogout = () => (dispatch) => {
       dispatch(emptyCart);
       dispatch(emptyWishlist);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
 
 export const handleCartItemChange = (id, qty, count) => (dispatch) => {
@@ -221,7 +221,7 @@ export const handleCartItemChange = (id, qty, count) => (dispatch) => {
         dispatch(decrement);
       }
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
 
 export const removeFromCart = (productId) => (dispatch) => {
@@ -234,7 +234,7 @@ export const removeFromCart = (productId) => (dispatch) => {
       const removeAction = actions.removeCart(productId);
       dispatch(removeAction);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
 
 export const removeFromWishlist = (productId) => (dispatch) => {
@@ -247,7 +247,7 @@ export const removeFromWishlist = (productId) => (dispatch) => {
       const removeAction = actions.removeWishlist(productId);
       dispatch(removeAction);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
 
 export const getCart = () => (dispatch) => {
@@ -261,7 +261,7 @@ export const getCart = () => (dispatch) => {
       const getCartItems = actions.getCartItems(res.data);
       dispatch(getCartItems);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
 
 export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
@@ -286,7 +286,7 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
         const addItems = actions.addWishlist(payLoad);
         dispatch(addItems);
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err.message));
   } else {
     const config = {
       url: `https://product-mock-server.herokuapp.com/wishlist/${item.id}`,
@@ -297,7 +297,7 @@ export const handleAddWishlist = (item, inWishlist) => (dispatch) => {
         const removeItems = actions.removeWishlist(item.id);
         dispatch(removeItems);
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.log(err.message));
   }
 };
 
@@ -311,5 +311,5 @@ export const getWishList = () => (dispatch) => {
       const wishlistAction = actions.getWishList(res.data);
       dispatch(wishlistAction);
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => console.log(err.message));
 };
