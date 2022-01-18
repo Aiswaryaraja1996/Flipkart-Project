@@ -198,32 +198,34 @@ export default function NavBar({ page = 0 }) {
             }}
           >
             {/* Logo Item */}
-            <Stack direction="column">
-              <img
-                width="75"
-                src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
-                alt="Flipkart"
-                title="Flipkart"
-              />
-
-              <div style={{ fontSize: "11px", fontStyle: "italic" }}>
-                Explore
-                <span
-                  style={{
-                    color: "#ffe500",
-                    fontWeight: "500",
-                    margin: "0 2px",
-                  }}
-                >
-                  Plus
-                </span>
+            <Link to="/">
+              <Stack direction="column">
                 <img
-                  width="10"
-                  src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png"
-                  alt="logo"
-                ></img>
-              </div>
-            </Stack>
+                  width="75"
+                  src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+                  alt="Flipkart"
+                  title="Flipkart"
+                />
+
+                <div style={{ fontSize: "11px", fontStyle: "italic" ,color:"#fff"}}>
+                  Explore
+                  <span
+                    style={{
+                      color: "#ffe500",
+                      fontWeight: "500",
+                      margin: "0 2px",
+                    }}
+                  >
+                    Plus
+                  </span>
+                  <img
+                    width="10"
+                    src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png"
+                    alt="logo"
+                  ></img>
+                </div>
+              </Stack>
+            </Link>
 
             {/* Search Bar */}
             {page !== 2 && (

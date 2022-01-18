@@ -6,7 +6,7 @@ export default function TotalCard({ cartItems, coupon = 0 }) {
   const [discount, setDiscount] = useState(0);
 
   useEffect(() => {
-    console.log(1);
+    
     totalAmount();
   }, [cartItems]);
 

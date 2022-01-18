@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import {Link} from "react-router-dom";
 
 export default function EmptyCart() {
   return (
@@ -22,12 +23,16 @@ export default function EmptyCart() {
           <div>
             <p style={{ fontSize: "smaller" }}>Add items to it now</p>
           </div>
+          <Link to="/" >
           <Button
-            style={{ width: "250px", padding: "10px" }}
+            style={{ width: "250px", padding: "10px",color: "white" }}
             variant="contained"
           >
+          
             Shop Now
           </Button>
+          </Link>
+         
         </div>
       </div>
     </div>

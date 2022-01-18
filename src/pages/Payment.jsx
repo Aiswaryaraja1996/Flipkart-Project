@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 import { useState, useEffect, forwardRef } from "react";
 import { useSelector } from "react-redux";
 import RemoveIcon from "@mui/icons-material/Remove";
+import * as actions from "../redux/Action";
 
 import { CartFooter } from "../components/cart/CartFooter";
 
@@ -22,6 +23,8 @@ import AddIcon from "@mui/icons-material/Add";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { deleteCartData } from "../redux/Api";
+import { useHistory } from "react-router-dom";
 
 function randomFour() {
   var val = Math.floor(1000 + Math.random() * 9000);
@@ -39,6 +42,7 @@ export default function Payment() {
   const [gift, setGift] = useState(false);
   const [discount, setDiscount] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { cartDetails } = cartItems;
 
@@ -70,6 +74,12 @@ export default function Payment() {
 
   const handleClick = () => {
     setOpen(true);
+    cartItems?.map((item) => dispatch(deleteCartData(item.id)));
+    const emptyCart = actions.emptyCart();
+    dispatch(emptyCart);
+    setTimeout(() => {
+      history.push("/cart");
+    }, 2000);
   };
 
   const handleClose = (event, reason) => {
