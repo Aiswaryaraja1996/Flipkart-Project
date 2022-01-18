@@ -373,7 +373,7 @@ export default function Payment() {
                 {order && (
                   <div>
                     {cartItems.map((item) => (
-                      <CartItem item={item} />
+                      <CartItem item={item} key={item.id}/>
                     ))}
                   </div>
                 )}
@@ -638,7 +638,7 @@ export default function Payment() {
               verticalAlign: "top",
             }}
           >
-            <TotalCard cartItems={cartItems} coupon={discount} />
+            <TotalCard cartItems={cartItems} coupon={discount} key={1} />
           </div>
         </div>
       </div>

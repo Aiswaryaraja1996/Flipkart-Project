@@ -792,13 +792,58 @@
     }
   ],
   "cart": [],
-  "wishlist": [],
+  "wishlist": [
+    {
+      "id": 2,
+      "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
+      "discount": 31,
+      "price": 1699,
+      "shortTitle": "1170-BL-BR Unique New Day & Date Analog Watch - For Men",
+      "review": [
+        {
+          "ratings": "3.1",
+          "review": "Very nice product it is fabulous I really love it thank you flipcart",
+          "location": "Kerala",
+          "like": 100,
+          "dislike": 10
+        },
+        {
+          "ratings": "2.8",
+          "review": "Very nice product it is fabulous I really love it thank you flipcart",
+          "location": "Kerala",
+          "like": 100,
+          "dislike": 10
+        },
+        {
+          "ratings": "3",
+          "review": "Very nice product it is fabulous I really love it thank you flipcart",
+          "location": "Kerala",
+          "like": 100,
+          "dislike": 10
+        }
+      ],
+      "token": "6086c00e-50d9-4c88-9fdc-c8aeab0db22a"
+    }
+  ],
   "registeredUsers": [
     {
-      "id": "70afc6ce-247d-445a-b11a-8c8dfecda565",
+      "id": "6086c00e-50d9-4c88-9fdc-c8aeab0db22a",
       "mobile": "9562152083",
       "password": "1234",
-      "cart": [],
+      "cart": [
+        {
+          "id": 2,
+          "title": "FOSSIL",
+          "discount": 31,
+          "price": 1699,
+          "qty": 1,
+          "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
+          "mrp": 1172,
+          "delDate": "Tue Feb 1",
+          "delCharge": "Free",
+          "token": "6086c00e-50d9-4c88-9fdc-c8aeab0db22a"
+        }
+      ],
       "wishlist": [
         {
           "id": 1,
@@ -829,7 +874,38 @@
               "dislike": 10
             }
           ],
-          "token": "70afc6ce-247d-445a-b11a-8c8dfecda565"
+          "token": "6086c00e-50d9-4c88-9fdc-c8aeab0db22a"
+        },
+        {
+          "id": 2,
+          "url": "https://rukminim1.flixcart.com/image/880/1056/k4rcmfk0pkrrdj/watch-refurbished/m/e/r/c-fs4656-fossil-original-imafgfugz5rfyyeq.jpeg?q=50",
+          "discount": 31,
+          "price": 1699,
+          "shortTitle": "1170-BL-BR Unique New Day & Date Analog Watch - For Men",
+          "review": [
+            {
+              "ratings": "3.1",
+              "review": "Very nice product it is fabulous I really love it thank you flipcart",
+              "location": "Kerala",
+              "like": 100,
+              "dislike": 10
+            },
+            {
+              "ratings": "2.8",
+              "review": "Very nice product it is fabulous I really love it thank you flipcart",
+              "location": "Kerala",
+              "like": 100,
+              "dislike": 10
+            },
+            {
+              "ratings": "3",
+              "review": "Very nice product it is fabulous I really love it thank you flipcart",
+              "location": "Kerala",
+              "like": 100,
+              "dislike": 10
+            }
+          ],
+          "token": "6086c00e-50d9-4c88-9fdc-c8aeab0db22a"
         }
       ]
     }

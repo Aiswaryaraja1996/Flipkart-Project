@@ -33,16 +33,18 @@ export default function Products() {
   const [value, setValue] = useState(0);
   const [page, setPage] = useState(1);
 
+  const [rate, setRate] = useState([0, 10000]);
+
   const [ratings, setRatings] = useState(0);
   const [idealFor, setIdealFor] = useState("all");
-  const [brand, setBrand] = useState("all");
+  const [bd, setBd] = useState([]);
 
   useEffect(() => {
     localStorage.removeItem("wishlist");
     saveData("wishlist", wishlist);
   }, [wishlist]);
 
-  // useEffect(() => dispatch(getProducts(query)), [page]);
+  useEffect(() => dispatch(getProducts(query)), []);
 
   const handleRatings = (n) => {
     setRatings(n);
@@ -53,7 +55,12 @@ export default function Products() {
   };
 
   const handleBrand = (n) => {
-    setBrand(n);
+    setBd([...bd, n]);
+  };
+
+  const handlePrice = (n) => {
+    console.log(n);
+    setRate(n);
   };
 
   const handleChange = (event, newValue) => {
@@ -107,6 +114,7 @@ export default function Products() {
               handleRatings={handleRatings}
               handleIdealfor={handleIdealfor}
               handleBrand={handleBrand}
+              handlePrice={handlePrice}
             />
           </div>
           <div
@@ -252,15 +260,15 @@ export default function Products() {
                   paddingTop: "8px",
                 }}
               >
-                <Grid
-                  container
-                  sx={{ paddingTop: "8px" }}
-                  spacing={1}
-                  justifyContent="space-between"
-                >
+                <Grid container sx={{ paddingTop: "8px" }} spacing={1}>
                   {product
                     ?.filter(({ avgRate }) => {
                       return avgRate > ratings;
+                    })
+                    .filter(({ price, discount }) => {
+                      var mrp = price - (price * discount) / 100;
+                      
+                      return mrp > rate[0] && mrp < rate[1];
                     })
                     .sort((a, b) => {
                       if (rule === null) {
@@ -282,7 +290,7 @@ export default function Products() {
                       }
                     })
                     .map((item) => (
-                      <ProductCard item={item} />
+                      <ProductCard item={item} key={item.id}/>
                     ))}
                   <div style={{ margin: "0 8px", width: "100%" }}>
                     <div

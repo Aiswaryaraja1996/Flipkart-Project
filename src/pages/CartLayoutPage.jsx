@@ -20,12 +20,15 @@ export const CartLayoutPage = () => {
 
   const { cartDetails } = cartItems;
 
-  localStorage.removeItem("cart");
-  saveData("cart", cartItems);
+  useEffect(() => {
+    localStorage.removeItem("cart");
+    saveData("cart", cartItems);
+  }, [cartItems]);
 
   useEffect(() => {
     dispatch(getCart());
   }, [cartDetails]);
+
   return (
     <div style={{ background: "#F1F3F6", height: "100vh" }}>
       <NavBar page={1} />
@@ -149,7 +152,7 @@ export const CartLayoutPage = () => {
               </Box>
             </Grid>
             <Grid item sx={{ width: "30%" }}>
-              <TotalCard cartItems={cartItems} />
+              <TotalCard cartItems={cartItems} key={1} />
             </Grid>
           </Grid>
         </div>

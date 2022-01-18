@@ -108,16 +108,20 @@ export const addCart = (data) => {
   return {
     type: actionConstants.ADD_CART,
     payload: {
-      id: data.id,
-      title: data.title,
-      url: data.url,
-      discount: data.discount,
-      price: data.price,
-      mrp: data.mrp,
-      delCharge: data.delCharge,
-      delDate: data.delDate,
-      qty: data.qty,
-      token: data.token,
+      cart: 
+        {
+          id: data.id,
+          title: data.title,
+          url: data.url,
+          discount: data.discount,
+          price: data.price,
+          mrp: data.mrp,
+          delCharge: data.delCharge,
+          delDate: data.delDate,
+          qty: data.qty,
+          token: data.token,
+        },
+      
     },
   };
 };
